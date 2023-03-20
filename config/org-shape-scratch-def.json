@@ -1,0 +1,10 @@
+{
+    "orgname": "Recommended Badges",
+    "sourceOrg": "00DDm000000H65oMAC",
+    "features": ["EnableSetPasswordInApi"],
+    "settings": {
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        }
+    }
+}
