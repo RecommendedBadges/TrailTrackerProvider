@@ -13,11 +13,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>TrailheadEntityUpdate__c.Global_Level__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>TrailheadEntityUpdate__c.Icon__c</field>
         <readable>true</readable>
     </fieldPermissions>
