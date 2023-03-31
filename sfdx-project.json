@@ -9,7 +9,7 @@
         },
         {
           "package": "TriggerHandler",
-          "versionNumber": "1.0.0.LATEST" 
+          "versionNumber": "1.0.0.LATEST"
         }
       ],
       "package": "Core",
@@ -29,11 +29,12 @@
   "name": "TrailTrackerProvider",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "56.0",
+  "sourceApiVersion": "57.0",
   "packageAliases": {
     "Core": "0Ho8b000000oLqTCAU",
     "TrailTracker": "04t1Q000001ACOnQAO",
     "TriggerHandler": "0Ho8b000000oLqYCAU",
-    "TriggerHandler@1.0.0-2": "04t8b000001FAa4AAG"
+    "TriggerHandler@1.0.0-2": "04t8b000001FAa4AAG",
+    "Core@0.1.0-1": "04t8b000001FAfZAAW"
   }
 }

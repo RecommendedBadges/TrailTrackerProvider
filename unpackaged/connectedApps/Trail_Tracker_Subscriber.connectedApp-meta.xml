@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>blearn5241@gmail.com</contactEmail>
+    <label>Trail Tracker Subscriber</label>
+    <oauthConfig>
+        <callbackUrl>https://scorpio-orion-9430-dev-ed.scratch.my.salesforce.com/services/authcallback/TrailTracker_Source_Org</callbackUrl>
+        <consumerKey>3MVG9IeKOu9pMLcJQRb09uHPyU6cbzuSB8RaXbaaUYBY9j_JJI.KQ0am6_A8bUzVT6Dywc.DAoS0q.5RDgPvG</consumerKey>
+        <isAdminApproved>false</isAdminApproved>
+        <isClientCredentialEnabled>false</isClientCredentialEnabled>
+        <isCodeCredentialEnabled>false</isCodeCredentialEnabled>
+        <isCodeCredentialPostOnly>false</isCodeCredentialPostOnly>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isSecretRequiredForRefreshToken>true</isSecretRequiredForRefreshToken>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>RefreshToken</scopes>
+        <scopes>OpenID</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+</ConnectedApp>
