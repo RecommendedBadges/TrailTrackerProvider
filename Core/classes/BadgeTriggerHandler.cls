@@ -22,7 +22,7 @@ public without sharing class BadgeTriggerHandler extends TriggerHandler {
             TrailheadEntityUpdateEvent__e updateEvent = new TrailheadEntityUpdateEvent__e();
             for(String customUpdateEventField : customUpdateEventFields) {
                 sObject oldRecord = oldRecordsMap.get(String.valueOf(updatedRecord.get('Id')));
-                Object newFieldValue = getNewFieldValue(updatedRecord, oldRecord, customUpdateEventField, namespacePrefix);
+                Object newFieldValue = getNewFieldValue(updatedRecord, oldRecord, customUpdateEventField, namespacePrefix); // better name for this variable
                 if(newFieldValue != null) {
                     updateEvent.put(customUpdateEventField, newFieldValue);
                 }
@@ -35,9 +35,12 @@ public without sharing class BadgeTriggerHandler extends TriggerHandler {
         EventBus.publish(updateEvents);
         // separate method for if field has changed
         // need to figure out the fields that we care about
-        // need to have namespace prefix
+        // need to have namespace prefix 
         // bulkified => need some loops, have to work through how many should be nested
-        
+        // everything's good here for this method. just want to update the access modifier/generalize/abstract
+        // is there a difference between badge and trail fields? i think so - how is that difference handled? (difference is that badge has type and trail doesn't)
+        // update getNewFieldValue for archived field - only care about archived switching from false to true
+        // gotta handle name fields appropriately
     }
 
     public static Object getNewFieldValue(sObject updatedRecord, sObject oldRecord, String fieldName, String namespacePrefix) {
