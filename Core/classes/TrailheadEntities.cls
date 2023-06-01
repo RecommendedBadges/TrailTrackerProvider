@@ -6,23 +6,24 @@
  * @last modified by  : Ben Learn
 **/
 public inherited sharing class TrailheadEntities {
-    private static Map<String, TrackedField> trackedFields {
+    private static Map<String, List<String>> trackedFieldsByObject {
         get {
-            if(trackedFields == null) {
-                List<TrailheadEntityTrackedField__mdt> trailheadEntityTrackedFields = [
-                    SELECT BadgeField__c, TrailField__c, Suffix__c, MasterLabel
-                     FROM TrailheadEntityTrackedField__mdt
-                ];
-                trackedFields = new Map<String, TrackedField>();
-                String fieldApiName;
-                for(TrailheadEntityTrackedField__mdt tetf : trailheadEntityTrackedFields) {
-                    fieldApiName = tetf.Suffix__c == null ? tetf.MasterLabel : tetf.MasterLabel + tetf.Suffix__c;
-                    trackedFields.put(fieldApiName, new TrackedField(fieldApiName, tetf.BadgeField__c, tetf.TrailField__c));
+            if(trackedFieldsByObject == null) {
+                List<TrackedField__mdt> trackedFields = [SELECT DeveloperName, Field__r.QualifiedApiName, Object__r.QualifiedApiName FROM TrackedField__mdt];
+                trackedFieldsByObject = new Map<String, List<String>>();
+                for(TrackedField__mdt tf : trackedFields) {
+                    if(trackedFieldsByObject.get(tf.Object__r.QualifiedApiName) == null) {
+                        trackedFieldsByObject.put(tf.Object__r.QualifiedApiName, new List<String>{tf.Field__r.QualifiedApiName});
+                    } else {
+                        List<String> tempTrackedFields = trackedFieldsByObject.get(tf.Object__r.QualifiedApiName);
+                        tempTrackedFields.add(tf.Field__r.QualifiedApiName);
+                        trackedFieldsByObject.put(tf.Object__r.QualifiedApiName, tempTrackedFields);
+                    }
                 }
             }
-            return trackedFields;
+            return trackedFieldsByObject;
         } set {
-            trackedFields = value;
+            trackedFieldsByObject = value;
         }
     }
 
@@ -30,33 +31,28 @@ public inherited sharing class TrailheadEntities {
     private Map<Id, sObject> oldRecordsMap;
     private String entityType;
 
-    public TrailheadEntities(Map<Id, trailheadapp__Badge__c> updatedBadgesMap, Map<Id, trailheadapp__Badge__c> oldBadgesMap) {
-        this.updatedRecordsMap = (Map<Id, sObject>) updatedBadgesMap;
-        this.oldRecordsMap = (Map<Id, sObject>) oldBadgesMap;
-        this.entityType = 'trailheadapp__Badge__c';
-    }
-
-    public TrailheadEntities(Map<Id, trailheadapp__Trail__c> updatedTrailsMap, Map<Id, trailheadapp__Trail__c> oldTrailsMap) {
-        this.updatedRecordsMap = (Map<Id, sObject>) updatedTrailsMap;
-        this.oldRecordsMap = (Map<Id, sObject>) oldTrailsMap;
-        this.entityType = 'trailheadapp__Trail__c';
+    public TrailheadEntities(Map<Id, sObject> updatedRecordsMap, Map<Id, sObject> oldRecordsMap, String entityType) {
+        this.updatedRecordsMap = updatedRecordsMap;
+        this.oldRecordsMap = oldRecordsMap;
+        this.entityType = entityType;
     }
 
     public void publishUpdateEvents() {
-        String namespacePrefix = 'trailheadapp__'; // todo - make more dynamic
+        String namespacePrefix = 'trailheadapp__'; // todo - make more dynamic - might be obselete now
+
+        System.debug(trackedFieldsByObject);
 
         
         List<TrailheadEntityUpdateEvent__e> updateEvents = new List<TrailheadEntityUpdateEvent__e>();
         for(sObject updatedRecord : updatedRecordsMap.values()) {
             TrailheadEntityUpdateEvent__e updateEvent = new TrailheadEntityUpdateEvent__e();
-            for(String trackedField : trackedFields.keySet()) {
-                //if(trackedFields.get(trackedField).badgeField && this.entityType)
+            for(String trackedField : trackedFieldsByObject.get(this.entityType)) {
                 // updating here
                 sObject oldRecord = oldRecordsMap.get(String.valueOf(updatedRecord.get('Id')));
-                /*Object newFieldValue = getNewFieldValue(updatedRecord, oldRecord, customUpdateEventField, namespacePrefix); // better name for this variable
+                Object newFieldValue = getValueIfChanged(updatedRecord, oldRecord, trackedField); // better name for this variable
                 if(newFieldValue != null) {
-                    updateEvent.put(customUpdateEventField, newFieldValue);
-                }*/
+                    updateEvent.put(trackedField, newFieldValue);
+                }
             }
             if(updateEvent != new TrailheadEntityUpdateEvent__e()) {
                 updateEvents.add(updateEvent);
@@ -64,26 +60,25 @@ public inherited sharing class TrailheadEntities {
         }
 
         EventBus.publish(updateEvents);
-        // separate method for if field has changed
-        // need to figure out the fields that we care about
-        // need to have namespace prefix 
         // bulkified => need some loops, have to work through how many should be nested
-        // everything's good here for this method. just want to update the access modifier/generalize/abstract
-        // is there a difference between badge and trail fields? i think so - how is that difference handled? (difference is that badge has type and trail doesn't)
-        // update getNewFieldValue for archived field - only care about archived switching from false to true
-        // gotta handle name fields appropriately
+        // create platform events with changed formula/picklist fields, changed values, and record ids/external ids
     }
 
-    private class TrackedField {
-        private Boolean badgeField;
-        private Boolean trailField;
-        private String fieldName;
-        //List<String> 
-
-        private TrackedField(String fieldName, Boolean badgeField, Boolean trailField) {
-            this.fieldName = fieldName;
-            this.badgeField = badgeField;
-            this.trailField = trailField;
+    private static Object getValueIfChanged(sObject updatedRecord, sObject oldRecord, String fieldName) {
+        if(updatedRecord.get(fieldName) != oldRecord.get(fieldName)) {
+            return updatedRecord.get(fieldName);
         }
+        return null;
+        /*
+            field types...
+            archived => checkbox
+            description => long text area
+            icon => text
+            level => text
+            name => text
+            products => long text area
+            type => text
+            url => text
+        */
     }
 }

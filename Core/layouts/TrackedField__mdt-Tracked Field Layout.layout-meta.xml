@@ -15,16 +15,12 @@
                 <field>DeveloperName</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>BadgeField__c</field>
+                <behavior>Required</behavior>
+                <field>Object__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>TrailField__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Suffix__c</field>
+                <behavior>Required</behavior>
+                <field>Field__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

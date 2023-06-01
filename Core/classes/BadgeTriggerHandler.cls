@@ -1,66 +1,16 @@
+/**
+ * @description       : 
+ * @author            : Ben Learn
+ * @group             : 
+ * @last modified on  : 06-01-2023
+ * @last modified by  : Ben Learn
+**/
 public without sharing class BadgeTriggerHandler extends TriggerHandler {
     public BadgeTriggerHandler() {
         super();
     }
 
     protected override void afterUpdate(Map<Id, sObject> updatedRecordsMap, Map<Id, sObject> oldRecordsMap) {
-       publishUpdateEvents(updatedRecordsMap, oldRecordsMap);
+       new TrailheadEntities(updatedRecordsMap, oldRecordsMap, 'trailheadapp__Badge__c').publishUpdateEvents();
     }
-
-    public static void publishUpdateEvents(Map<Id, sObject> updatedRecordsMap, Map<Id, sObject> oldRecordsMap) {
-        String namespacePrefix = 'trailheadapp__'; // todo - make more dynamic
-
-        Map<String, Schema.SObjectField> updateEventFieldsMap = Schema.TrailheadEntityUpdateEvent__e.sObjectType.getDescribe().fields.getMap();
-        List<String> customUpdateEventFields = new List<String>();
-        for(String fieldName : updateEventFieldsMap.keySet()) {
-            if(fieldName.contains('__c')) customUpdateEventFields.add(fieldName);
-        }
-        // play around with heap size to see difference maybe? ... well we'd probably have to run tests for that. not sure if i care *that* much
-        
-        List<TrailheadEntityUpdateEvent__e> updateEvents = new List<TrailheadEntityUpdateEvent__e>();
-        for(sObject updatedRecord : updatedRecordsMap.values()) {
-            TrailheadEntityUpdateEvent__e updateEvent = new TrailheadEntityUpdateEvent__e();
-            for(String customUpdateEventField : customUpdateEventFields) {
-                sObject oldRecord = oldRecordsMap.get(String.valueOf(updatedRecord.get('Id')));
-                Object newFieldValue = getNewFieldValue(updatedRecord, oldRecord, customUpdateEventField, namespacePrefix); // better name for this variable
-                if(newFieldValue != null) {
-                    updateEvent.put(customUpdateEventField, newFieldValue);
-                }
-            }
-            if(updateEvent != new TrailheadEntityUpdateEvent__e()) {
-                updateEvents.add(updateEvent);
-            }
-        }
-
-        EventBus.publish(updateEvents);
-        // separate method for if field has changed
-        // need to figure out the fields that we care about
-        // need to have namespace prefix 
-        // bulkified => need some loops, have to work through how many should be nested
-        // everything's good here for this method. just want to update the access modifier/generalize/abstract
-        // is there a difference between badge and trail fields? i think so - how is that difference handled? (difference is that badge has type and trail doesn't)
-        // update getNewFieldValue for archived field - only care about archived switching from false to true
-        // gotta handle name fields appropriately
-    }
-
-    public static Object getNewFieldValue(sObject updatedRecord, sObject oldRecord, String fieldName, String namespacePrefix) {
-        if(updatedRecord.get(namespacePrefix + fieldName) != oldRecord.get(namespacePrefix + fieldName)) {
-            return updatedRecord.get(namespacePrefix + fieldName);
-        }
-        return null;
-        /*
-            field types...
-            archived => checkbox
-            description => long text area
-            icon => text
-            level => text
-            name => text
-            products => long text area
-            type => text
-            url => text
-        */
-    }
-    // create platform events with changed formula/picklist fields, changed values, and record ids/external ids
-    // can this be a ..... service? not sure (update: probably not)
-    // should namespace prefix be a lazy loaded static variable? that's a question for later
 }
