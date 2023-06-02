@@ -1,5 +1,5 @@
 /**
- * Update this description
+ * Domain class for functionality shared between the trailheadapp__Badge__c and trailheadapp__Trail__c custom objects
  * @author Ben Learn
  * @since 06-02-2023
  * @group Core
@@ -67,7 +67,6 @@ public inherited sharing class TrailheadEntities {
                 updateEvents.add(updateEvent);
             }
         }
-
         EventBus.publish(updateEvents);
     }
 
