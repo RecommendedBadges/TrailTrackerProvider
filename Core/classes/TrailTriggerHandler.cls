@@ -1,15 +1,19 @@
 /**
- * @description       : 
- * @author            : Ben Learn
- * @group             : 
- * @last modified on  : 06-02-2023
- * @last modified by  : Ben Learn
+ * Trigger handler for trailheadapp__Trail__c custom object
+ * @author Ben Learn
+ * @since 06-02-2023
+ * @group Core
 **/
 public without sharing class TrailTriggerHandler  extends TriggerHandler {
     public TrailTriggerHandler() {
         super();
     }
 
+    /**
+     * 
+     * @param updatedRecordsMap Map of IDs to updated trailheadapp__Trail__c records
+     * @param oldRecordsMap Map of IDs to old trailheadapp__Trail__c records
+     */
     protected override void afterUpdate(Map<Id, sObject> updatedRecordsMap, Map<Id, sObject> oldRecordsMap) {
         new TrailheadEntities(updatedRecordsMap, oldRecordsMap, 'trailheadapp__Trail__c').publishUpdateEvents();
     }

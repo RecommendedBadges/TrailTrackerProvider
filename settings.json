@@ -1,6 +1,0 @@
-{
-    "apexdox.engine.targetDirectory": "${workspaceFolder}\\documentation",
-    "apexdox.engine.source": [{
-        "path": "${workspaceFolder}\\src\\classes"
-    }]
-}

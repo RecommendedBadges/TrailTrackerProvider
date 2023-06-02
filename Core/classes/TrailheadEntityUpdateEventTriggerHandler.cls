@@ -8,11 +8,26 @@ public without sharing class TrailheadEntityUpdateEventTriggerHandler extends Tr
     public TrailheadEntityUpdateEventTriggerHandler() {
         super();
     }
+
     /**
      * 
      * @param newRecordsMap Map of IDs to newly inserted TrailheadEntityUpdateEvent__e events
      */
     protected override void afterInsert(Map<Id, sObject> newRecordsMap) {
-        
+        List<sObject> trailheadEntityUpdates = new List<sObject>();
+        for(sObject teuEvent : newRecordsMap.values()) {
+            Map<String, Object> populatedFieldsMap = teuEvent.getPopulatedFieldsAsMap();
+            sObject teu = new TrailheadEntityUpdate__c();
+            
+            for(String populatedField : populatedFieldsMap.keySet()) {
+                teu.put(populatedField, populatedFieldsMap.get(populatedField));
+            }
+            trailheadEntityUpdates.add(teu);
+        }
+        Database.insert(trailheadEntityUpdates);
     }
+    /*
+    Queues async job to make callout to subscriber
+    with IDs of custom object records.
+    */
 }

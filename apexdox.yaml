@@ -3,3 +3,13 @@ engine:
   source:
     - path: "${workspaceFolder}/Core/classes"
   homePagePath: "${workspaceFolder}/ApexDoxHomePage.html"
+  excludes: [
+    "*_Tests.cls"
+  ]
+  scope: [
+    "global",
+    "public", 
+    "protected",
+    "webService" 
+  ]
+  title: "Trail Tracker Provider"

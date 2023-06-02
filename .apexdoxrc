@@ -1,9 +1,0 @@
-{
-    "engine": {
-      "targetDirectory": "${workspaceFolder}/documentation",
-      "source": [{
-        "path": "${workspaceFolder}/Core/classes"
-      }],
-      "homePagePath": "${workspaceFolder}/ApexDoxHomePage.html"
-    }
-  }
