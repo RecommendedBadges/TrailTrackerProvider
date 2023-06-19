@@ -5,6 +5,11 @@
  * @group Core
 **/
 public inherited sharing class TrailheadEntities {
+    private Map<Id, sObject> updatedRecordsMap;
+    private Map<Id, sObject> oldRecordsMap;
+    private String entityType;
+    private String namespacePrefix;
+    
     private static Map<String, List<TrackedField__mdt>> trackedFieldsByObject {
         get {
             if(trackedFieldsByObject == null) {
@@ -28,11 +33,6 @@ public inherited sharing class TrailheadEntities {
             trackedFieldsByObject = value;
         }
     }
-
-    private Map<Id, sObject> updatedRecordsMap;
-    private Map<Id, sObject> oldRecordsMap;
-    private String entityType;
-    private String namespacePrefix;
 
     public TrailheadEntities(Map<Id, sObject> updatedRecordsMap, Map<Id, sObject> oldRecordsMap, String entityType) {
         this.updatedRecordsMap = updatedRecordsMap;
