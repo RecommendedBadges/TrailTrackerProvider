@@ -32,6 +32,7 @@
   "sourceApiVersion": "57.0",
   "packageAliases": {
     "Core": "0Ho8b000000oLqTCAU",
+    "TestSupport": "04t8c000000iBLpAAM",
     "TrailTracker": "04t1Q000001ACOnQAO",
     "TriggerHandler": "0Ho8b000000oLqYCAU",
     "TriggerHandler@1.0.0-2": "04t8b000001FAa4AAG",
