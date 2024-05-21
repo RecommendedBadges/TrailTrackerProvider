@@ -17,4 +17,10 @@
         </properties>
     </rule>
 
+    <rule ref="category/apex/codestyle.xml/MethodNamingConventions" message="No underscores in non-test method names.">
+        <properties>
+            <property name="testPattern" value="[a-z][a-zA-Z0-9_]*" />
+        </properties>
+    </rule>
+
 </ruleset>

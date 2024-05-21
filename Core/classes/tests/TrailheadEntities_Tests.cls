@@ -2,19 +2,16 @@
 private class TrailheadEntities_Tests {
     @isTest
     private static void it_should_generate_events_for_tracked_badge_fields() {
-        BadgeTS badgeGenerator = new BadgeTS(new Map<String, Object>{
-            'returnCreatedRecords' => false
-        });
+        BadgeTS badgeGenerator = new BadgeTS(new Map<String, Object>{});
         badgeGenerator.generate();
-        badgeGenerator.changeField(trailheadapp__Badge__c.trailheadapp__URL__c.getDescribe(), 'www.modifiedtest.com');
-        badgeGenerator.changeField(trailheadapp__Badge__c.trailheadapp__Roles__c.getDescribe(), 'Example roles.');
-        badgeGenerator.changePicklistField(trailheadapp__Badge__c.trailheadapp__Type__c.getDescribe());
+        badgeGenerator.changeField(trailheadapp__Badge__c.trailheadapp__URL__c, 'www.modifiedtest.com')
+            .changeField(trailheadapp__Badge__c.trailheadapp__Roles__c, 'Example roles.')
+            .changeField(trailheadapp__Badge__c.trailheadapp__Type__c);
         
-        TrailheadEntities te = new TrailheadEntities(badgeGenerator.modifiedRecords, badgeGenerator.records, 'trailheadapp__Badge__c');
-        Map<String, List<String>> trackedFieldsByObject = new Map<String, List<String>>{
+        TrailheadEntities te = new TrailheadEntities(new Map<Id, sObject>(badgeGenerator.modifiedRecords), new Map<Id, sObject>(badgeGenerator.records), 'trailheadapp__Badge__c');
+        TrailheadEntities.trackedFieldsByObject = new Map<String, List<String>>{
             'trailheadapp__Badge__c' => new List<String>{'trailheadapp__Type__c', 'trailheadapp__URL__c'}
         };
-        TrailheadEntities.trackedFieldsByObject = trackedFieldsByObject;
 
         Test.startTest();
         List<TrailheadEntityUpdateEvent__e> trailheadEntityUpdateEvents = te.generateUpdateEvents();
@@ -42,18 +39,15 @@ private class TrailheadEntities_Tests {
 
     @isTest
     private static void it_should_generate_events_for_tracked_trail_fields() {
-        TrailTS trailGenerator = new TrailTS(new Map<String, Object>{
-            'returnCreatedRecords' => false
-        });
+        TrailTS trailGenerator = new TrailTS(new Map<String, Object>{});
         trailGenerator.generate();
-        trailGenerator.changeField(trailheadapp__Trail__c.trailheadapp__Description__c.getDescribe(), 'Changed description.');
-        trailGenerator.changePicklistField(trailheadapp__trail__c.trailheadapp__Level__c.getDescribe());
+        trailGenerator.changeField(trailheadapp__Trail__c.trailheadapp__Description__c, 'Changed description.')
+            .changeField(trailheadapp__Trail__c.trailheadapp__Level__c);
 
-        TrailheadEntities te = new TrailheadEntities(trailGenerator.modifiedRecords, trailGenerator.records, 'trailheadapp__Trail__c');
-        Map<String, List<String>> trackedFieldsByObject = new Map<String, List<String>>{
+        TrailheadEntities te = new TrailheadEntities(new Map<Id, sObject>(trailGenerator.modifiedRecords), new Map<Id, sObject>(trailGenerator.records), 'trailheadapp__Trail__c');
+        TrailheadEntities.trackedFieldsByObject =  new Map<String, List<String>>{
             'trailheadapp__Trail__c' => new List<String>{'trailheadapp__Description__c', 'trailheadapp__Level__c'}
         };
-        TrailheadEntities.trackedFieldsByObject = trackedFieldsByObject;
 
         Test.startTest();
         List<TrailheadEntityUpdateEvent__e> trailheadEntityUpdateEvents = te.generateUpdateEvents();
@@ -76,13 +70,11 @@ private class TrailheadEntities_Tests {
 
     @isTest
     private static void it_should_ignore_changes_to_non_tracked_badge_fields() {
-        BadgeTS badgeGenerator = new BadgeTS(new Map<String, Object>{
-            'returnCreatedRecords' => false
-        });
+        BadgeTS badgeGenerator = new BadgeTS(new Map<String, Object>{});
         badgeGenerator.generate();
-        badgeGenerator.changeField(trailheadapp__Badge__c.trailheadapp__Roles__c.getDescribe(), 'Example role.');
+        badgeGenerator.changeField(trailheadapp__Badge__c.trailheadapp__Roles__c, 'Example role.');
 
-        TrailheadEntities te = new TrailheadEntities(badgeGenerator.modifiedRecords, badgeGenerator.records, 'trailheadapp__Badge__c');
+        TrailheadEntities te = new TrailheadEntities(new Map<Id,sObject>(badgeGenerator.modifiedRecords), new Map<Id, sObject>(badgeGenerator.records), 'trailheadapp__Badge__c');
 
         Test.startTest();
         List<TrailheadEntityUpdateEvent__e> trailheadEntityUpdateEvents = te.generateUpdateEvents();
@@ -93,13 +85,11 @@ private class TrailheadEntities_Tests {
 
     @isTest
     private static void it_should_ignore_changes_to_non_tracked_trail_fields() {
-        TrailTS trailGenerator = new TrailTS(new Map<String, Object>{
-            'returnCreatedRecords' => false
-        });
+        TrailTS trailGenerator = new TrailTS(new Map<String, Object>{});
         trailGenerator.generate();
-        trailGenerator.changeField(trailheadapp__Trail__c.trailheadapp__Roles__c.getDescribe(), 'Example role.');
+        trailGenerator.changeField(trailheadapp__Trail__c.trailheadapp__Roles__c, 'Example role.');
 
-        TrailheadEntities te = new TrailheadEntities(trailGenerator.modifiedRecords, trailGenerator.records, 'trailheadapp__Trail__c');
+        TrailheadEntities te = new TrailheadEntities(new Map<Id, sObject>(trailGenerator.modifiedRecords), new Map<Id, sObject>(trailGenerator.records), 'trailheadapp__Trail__c');
 
         Test.startTest();
         List<TrailheadEntityUpdateEvent__e> trailheadEntityUpdateEvents = te.generateUpdateEvents();

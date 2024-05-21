@@ -26,8 +26,4 @@ public without sharing class TrailheadEntityUpdateEventTriggerHandler extends Tr
         }
         Database.insert(trailheadEntityUpdates);
     }
-    /*
-    Queues async job to make callout to subscriber
-    with IDs of custom object records.
-    */
 }

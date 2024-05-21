@@ -63,7 +63,7 @@ public inherited sharing class TrailheadEntities {
                     updateEvent.put(updateEventFieldName, newFieldValue);
                 }
             }
-            if(updateEvent != new TrailheadEntityUpdateEvent__e()) {
+            if(updateEvent.getPopulatedFieldsAsMap().isEmpty() == false) {
                 updateEvent.APIName__c = String.valueOf(updatedRecord.get('trailheadapp__API_Name__c'));
                 updateEvents.add(updateEvent);
             }

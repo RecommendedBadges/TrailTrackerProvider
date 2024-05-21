@@ -15,6 +15,6 @@ public without sharing class BadgeTriggerHandler extends TriggerHandler {
      * @param oldRecordsMap Map of IDs to old trailheadapp__Badge__c records
      */    
     protected override void afterUpdate(Map<Id, sObject> updatedRecordsMap, Map<Id, sObject> oldRecordsMap) {
-       EventBus.publish(new TrailheadEntities(updatedRecordsMap, oldRecordsMap, 'trailheadapp__Badge__c').generateUpdateEvents());
+       EventBus.publish(new TrailheadEntities(updatedRecordsMap, oldRecordsMap, Schema.SObjectType.trailheadapp__Badge__c.getName()).generateUpdateEvents());
     }
 }

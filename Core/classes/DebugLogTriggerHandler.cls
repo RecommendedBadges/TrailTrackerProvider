@@ -24,6 +24,11 @@ public without sharing class DebugLogTriggerHandler extends TriggerHandler {
             if((syncJobIsFinished(debugLog) == true) && (numTrailheadEntityUpdateRecords > 0)) {
                 // enqueue job that makes callout
                 // maybe add a check here to see if there are any trailheadentityupdate records
+
+    /*
+    Queues async job to make callout to subscriber
+    with IDs of custom object records.
+    */
             }
         }
     }
