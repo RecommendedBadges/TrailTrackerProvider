@@ -4,7 +4,10 @@
  * @since 06-02-2023
  * @group Core
 **/
-public without sharing class TrailTriggerHandler  extends TriggerHandler {
+public without sharing class TrailTriggerHandler  extends TriggerHandler {    
+    /**
+     * Constructor for trigger handler
+    */
     public TrailTriggerHandler() {
         super();
     }

@@ -4,7 +4,8 @@ engine:
     - path: "${workspaceFolder}/Core/classes"
   homePagePath: "${workspaceFolder}/ApexDoxHomePage.html"
   excludes: [
-    "*_Tests.cls"
+    "*_Tests.cls",
+    "*TS.cls"
   ]
   scope: [
     "global",

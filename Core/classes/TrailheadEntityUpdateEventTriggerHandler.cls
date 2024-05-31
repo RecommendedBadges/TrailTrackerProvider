@@ -5,9 +5,23 @@
  * @group Core
  */
 public without sharing class TrailheadEntityUpdateEventTriggerHandler extends TriggerHandler {
+    private static final List<String> systemPlatformEventFields {
+        get {
+            if(systemPlatformEventFields == null) {
+                systemPlatformEventFields = new List<String>{'CreatedById', 'CreatedDate', 'EventUuid', 'ReplayId'};
+            }
+            return systemPlatformEventFields;
+        }
+        set;
+    }
+
+    /**
+     * Constructor for trigger handler
+     */
     public TrailheadEntityUpdateEventTriggerHandler() {
         super();
     }
+
 
     /**
      * 
@@ -19,8 +33,11 @@ public without sharing class TrailheadEntityUpdateEventTriggerHandler extends Tr
             Map<String, Object> populatedFieldsMap = teuEvent.getPopulatedFieldsAsMap();
             sObject teu = new TrailheadEntityUpdate__c();
             
+            System.debug(populatedFieldsMap.keySet());
             for(String populatedField : populatedFieldsMap.keySet()) {
-                teu.put(populatedField, populatedFieldsMap.get(populatedField));
+                if(systemPlatformEventFields.contains(populatedField) == false) {
+                    teu.put(populatedField, populatedFieldsMap.get(populatedField));
+                }
             }
             trailheadEntityUpdates.add(teu);
         }

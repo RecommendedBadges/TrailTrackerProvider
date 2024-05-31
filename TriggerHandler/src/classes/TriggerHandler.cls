@@ -9,7 +9,7 @@ public virtual class TriggerHandler {
     }
 
     public void execute() {
-        TriggerOperation context = triggerContext != null ? triggerContext : Trigger.operationType;
+        TriggerOperation context = triggerContext ?? Trigger.operationType;
         switch on context {
             when BEFORE_INSERT {
                 this.beforeInsert(Trigger.new);

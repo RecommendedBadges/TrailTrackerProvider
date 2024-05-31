@@ -4,7 +4,10 @@
  * @since 06-01-2023
  * @group Core
 **/
-public without sharing class BadgeTriggerHandler extends TriggerHandler {
+public without sharing class BadgeTriggerHandler extends TriggerHandler {    
+    /**
+     * Constructor for trigger handler
+     */
     public BadgeTriggerHandler() {
         super();
     }

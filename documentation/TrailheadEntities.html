@@ -43,19 +43,19 @@
             </summary>
             <ul>
               <!-- menu items -->
-              <li title="BadgeTriggerHandler" id="item-BadgeTriggerHandler" class="nav-item class public" onclick="goToLocation('BadgeTriggerHandler.html');">
+              <li title="BadgeTriggerHandler" id="item-BadgeTriggerHandler" class="nav-item class " onclick="goToLocation('BadgeTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">BadgeTriggerHandler</a>
               </li>
-              <li title="DebugLogTriggerHandler" id="item-DebugLogTriggerHandler" class="nav-item class public" onclick="goToLocation('DebugLogTriggerHandler.html');">
+              <li title="DebugLogTriggerHandler" id="item-DebugLogTriggerHandler" class="nav-item class " onclick="goToLocation('DebugLogTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">DebugLogTriggerHandler</a>
               </li>
-              <li title="TrailTriggerHandler" id="item-TrailTriggerHandler" class="nav-item class public" onclick="goToLocation('TrailTriggerHandler.html');">
+              <li title="TrailTriggerHandler" id="item-TrailTriggerHandler" class="nav-item class " onclick="goToLocation('TrailTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">TrailTriggerHandler</a>
               </li>
-              <li title="TrailheadEntities" id="item-TrailheadEntities" class="nav-item class public" onclick="goToLocation('TrailheadEntities.html');">
+              <li title="TrailheadEntities" id="item-TrailheadEntities" class="nav-item class " onclick="goToLocation('TrailheadEntities.html');">
                 <a tabindex="1" href="javascript:void(0)">TrailheadEntities</a>
               </li>
-              <li title="TrailheadEntityUpdateEventTriggerHandler" id="item-TrailheadEntityUpdateEventTriggerHandler" class="nav-item class public" onclick="goToLocation('TrailheadEntityUpdateEventTriggerHandler.html');">
+              <li title="TrailheadEntityUpdateEventTriggerHandler" id="item-TrailheadEntityUpdateEventTriggerHandler" class="nav-item class " onclick="goToLocation('TrailheadEntityUpdateEventTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">TrailheadEntityUpdateEventTriggerHandler</a>
               </li>
             </ul>
@@ -134,7 +134,7 @@
                   <div class="method-subtitle">
                     Signature
                   </div>
-
+                  <div class="method-annotations">@SuppressWarnings('PMD.ApexDoc')</div>
                   <div class="method-signature">
                     public TrailheadEntities(Map&lt;Id, sObject&gt; updatedRecordsMap, Map&lt;Id, sObject&gt; oldRecordsMap, String entityType)
                   </div>
@@ -146,22 +146,34 @@
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method public">
-                    <a class="methods-toc__entry " href="#TrailheadEntities.publishUpdateEvents">
-                      publishUpdateEvents ()
+                    <a class="methods-toc__entry " href="#TrailheadEntities.generateUpdateEvents">
+                      generateUpdateEvents ()
                     </a>
 
+                    <div class="methods-toc__description">
+                      Publishes TrailheadEntityUpdateEvent__e platform events for changes to tracked fields on badges and trails.
+                    </div>
                   </li>
                 </ul>
                 <div class="method public">
-                  <h4 class="method-title " id="TrailheadEntities.publishUpdateEvents">
-                    <span>publishUpdateEvents()</span>
+                  <h4 class="method-title " id="TrailheadEntities.generateUpdateEvents">
+                    <span>generateUpdateEvents()</span>
                   </h4>
+                  <div class="method-description">
+                    Publishes TrailheadEntityUpdateEvent__e platform events for changes to tracked fields on badges and trails.
+                  </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    public void publishUpdateEvents()
+                    public List&lt;TrailheadEntityUpdateEvent__e&gt; generateUpdateEvents()
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    <code class="code-inline">List&lt;TrailheadEntityUpdateEvent__e&gt;</code>
                   </div>
                 </div>
               </div>

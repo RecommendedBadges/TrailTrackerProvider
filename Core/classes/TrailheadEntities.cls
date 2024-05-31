@@ -35,6 +35,7 @@ public inherited sharing class TrailheadEntities {
         }
     }
 
+    @SuppressWarnings('PMD.ApexDoc')
     public TrailheadEntities(Map<Id, sObject> updatedRecordsMap, Map<Id, sObject> oldRecordsMap, String entityType) {
         this.updatedRecordsMap = updatedRecordsMap;
         this.oldRecordsMap = oldRecordsMap;
@@ -46,6 +47,10 @@ public inherited sharing class TrailheadEntities {
         }
     }
 
+    /**
+     * Creates TrailheadEntityUpdateEvent__e platform events for changes to tracked fields on Badges and Trails
+     * @return  `List<TrailheadEntityUpdateEvent__e>`
+     */    
     public List<TrailheadEntityUpdateEvent__e> generateUpdateEvents() {
         List<TrailheadEntityUpdateEvent__e> updateEvents = new List<TrailheadEntityUpdateEvent__e>();
         for(sObject updatedRecord : updatedRecordsMap.values()) {
@@ -55,7 +60,7 @@ public inherited sharing class TrailheadEntities {
                 Object newFieldValue = getValueIfChanged(updatedRecord, oldRecord, trackedField);
                 String updateEventFieldName = trackedField.removeStart(this.namespacePrefix);
                 
-                // if the field is a standard field, it doesn't have the __c suffix, but the correspond platform event field is a custom field, so it will have the __c suffix
+                // if the field is a standard field, it doesn't have the __c suffix, but the corresponding platform event field is a custom field, so it will have the __c suffix
                 if(trackedField.indexOf('__c') == -1) {
                     updateEventFieldName += '__c';
                 }

@@ -9,7 +9,10 @@ public without sharing class DebugLogTriggerHandler extends TriggerHandler {
     private static final String	SYNC_FINISHED_METHOD = 'finish';
     private static final String SYNC_FINISHED_MESSAGE = 'Finished Trail Tracker sync.';
     private static final String SYNC_FINISHED_SEVERITY = 'INFO';
-
+    
+    /**
+     * Constructor for trigger handler
+     */
     public DebugLogTriggerHandler() {
         super();
     }
@@ -24,11 +27,10 @@ public without sharing class DebugLogTriggerHandler extends TriggerHandler {
             if((syncJobIsFinished(debugLog) == true) && (numTrailheadEntityUpdateRecords > 0)) {
                 // enqueue job that makes callout
                 // maybe add a check here to see if there are any trailheadentityupdate records
-
-    /*
-    Queues async job to make callout to subscriber
-    with IDs of custom object records.
-    */
+                /*
+                Queues async job to make callout to subscriber
+                with IDs of custom object records.
+                */
             }
         }
     }
