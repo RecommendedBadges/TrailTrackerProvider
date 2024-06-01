@@ -2,10 +2,7 @@
 private class TrailTriggerHandler_Tests {
     @isTest
     private static void it_should_generate_events_for_tracked_trail_fields() {
-        TrailTS trailGenerator = new TrailTS(new Map<String, Object>{
-            'generateRecordIDs' => false,
-            'numberToGenerate' => 1
-        });
+        TrailTS trailGenerator = new TrailTS(new Map<String, Object>{'generateRecordIDs' => false});
         insert trailGenerator.generate();
 
         TrailheadEntities.trackedFieldsByObject = new Map<String, List<String>>{
@@ -22,9 +19,9 @@ private class TrailTriggerHandler_Tests {
             'Expected three DML statements - two for trail updates and one for Trailhead Entity Update Event publish on tracked field.'
         );
         Assert.areEqual(
-            3,
+            600,
             Limits.getDmlRows(),
-            'Expected three DML rows - two for trail updates and one for Trailhead Entity Update Event publish on tracked field.'
+            'Expected 600 DML rows - 400 from trail updates and 200 from Trailhead Entity Update Event publish on tracked field.'
         );
         Test.stopTest();
     }

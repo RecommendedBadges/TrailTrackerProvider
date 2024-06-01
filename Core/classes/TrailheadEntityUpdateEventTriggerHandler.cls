@@ -32,8 +32,8 @@ public without sharing class TrailheadEntityUpdateEventTriggerHandler extends Tr
         for(sObject teuEvent : newRecordsMap.values()) {
             Map<String, Object> populatedFieldsMap = teuEvent.getPopulatedFieldsAsMap();
             sObject teu = new TrailheadEntityUpdate__c();
+            Set<String> updatedFields = new Set<String>();
             
-            System.debug(populatedFieldsMap.keySet());
             for(String populatedField : populatedFieldsMap.keySet()) {
                 if(systemPlatformEventFields.contains(populatedField) == false) {
                     teu.put(populatedField, populatedFieldsMap.get(populatedField));

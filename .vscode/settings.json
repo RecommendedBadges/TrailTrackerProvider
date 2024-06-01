@@ -4,8 +4,10 @@
     "**/bower_components": true,
     "**/.sfdx": true
   },
-  "salesforcedx-vscode-core.push-or-deploy-on-save.enabled": false,
+  "salesforcedx-vscode-core.push-or-deploy-on-save.enabled": true,
   "apexPMD.rulesets": [
     ".pmdrules.xml"
-  ]
+  ],
+  "salesforcedx-vscode-core.detectConflictsAtSync": true,
+  "salesforcedx-vscode-core.push-or-deploy-on-save.preferDeployOnSave": true
 }

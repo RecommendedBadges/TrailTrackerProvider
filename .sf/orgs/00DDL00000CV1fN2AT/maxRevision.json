@@ -1,0 +1,149 @@
+{
+  "serverMaxRevisionCounter": 38,
+  "sourceMembers": {
+    "CustomField__TrailheadEntityUpdateEvent__e.Archived__c": {
+      "serverRevisionCounter": 12,
+      "lastRetrievedFromServer": 12,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdateEvent__e.Description__c": {
+      "serverRevisionCounter": 13,
+      "lastRetrievedFromServer": 13,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdateEvent__e.Icon__c": {
+      "serverRevisionCounter": 14,
+      "lastRetrievedFromServer": 14,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdateEvent__e.Level__c": {
+      "serverRevisionCounter": 15,
+      "lastRetrievedFromServer": 15,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdateEvent__e.Name__c": {
+      "serverRevisionCounter": 16,
+      "lastRetrievedFromServer": 16,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdateEvent__e.Products__c": {
+      "serverRevisionCounter": 17,
+      "lastRetrievedFromServer": 17,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdateEvent__e.Type__c": {
+      "serverRevisionCounter": 18,
+      "lastRetrievedFromServer": 18,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdateEvent__e.URL__c": {
+      "serverRevisionCounter": 19,
+      "lastRetrievedFromServer": 19,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdate__c.Archived__c": {
+      "serverRevisionCounter": 20,
+      "lastRetrievedFromServer": 20,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdate__c.Description__c": {
+      "serverRevisionCounter": 21,
+      "lastRetrievedFromServer": 21,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdate__c.Icon__c": {
+      "serverRevisionCounter": 22,
+      "lastRetrievedFromServer": 22,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdate__c.Level__c": {
+      "serverRevisionCounter": 23,
+      "lastRetrievedFromServer": 23,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdate__c.Name__c": {
+      "serverRevisionCounter": 24,
+      "lastRetrievedFromServer": 24,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdate__c.Products__c": {
+      "serverRevisionCounter": 25,
+      "lastRetrievedFromServer": 25,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdate__c.Type__c": {
+      "serverRevisionCounter": 26,
+      "lastRetrievedFromServer": 26,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__TrailheadEntityUpdate__c.URL__c": {
+      "serverRevisionCounter": 27,
+      "lastRetrievedFromServer": 27,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "Profile__Admin": {
+      "serverRevisionCounter": 11,
+      "lastRetrievedFromServer": null,
+      "memberType": "Profile",
+      "isNameObsolete": false
+    },
+    "CustomObject__TrailheadEntityUpdateEvent__e": {
+      "serverRevisionCounter": 32,
+      "lastRetrievedFromServer": 32,
+      "memberType": "CustomObject",
+      "isNameObsolete": false
+    },
+    "CustomObject__TrailheadEntityUpdate__c": {
+      "serverRevisionCounter": 33,
+      "lastRetrievedFromServer": 33,
+      "memberType": "CustomObject",
+      "isNameObsolete": false
+    },
+    "ApexClass__BadgeTriggerHandler": {
+      "serverRevisionCounter": 38,
+      "lastRetrievedFromServer": 38,
+      "memberType": "ApexClass",
+      "isNameObsolete": false
+    },
+    "ApexClass__TrailTriggerHandler": {
+      "serverRevisionCounter": 29,
+      "lastRetrievedFromServer": 29,
+      "memberType": "ApexClass",
+      "isNameObsolete": false
+    },
+    "ApexTrigger__BadgeTrigger": {
+      "serverRevisionCounter": 30,
+      "lastRetrievedFromServer": 30,
+      "memberType": "ApexTrigger",
+      "isNameObsolete": false
+    },
+    "ApexTrigger__TrailTrigger": {
+      "serverRevisionCounter": 31,
+      "lastRetrievedFromServer": 31,
+      "memberType": "ApexTrigger",
+      "isNameObsolete": false
+    },
+    "PermissionSet__Trail_Tracker_Provider_Permissions": {
+      "serverRevisionCounter": 34,
+      "lastRetrievedFromServer": 34,
+      "memberType": "PermissionSet",
+      "isNameObsolete": false
+    }
+  }
+}

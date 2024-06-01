@@ -25,12 +25,7 @@ public without sharing class DebugLogTriggerHandler extends TriggerHandler {
         Integer numTrailheadEntityUpdateRecords = [SELECT COUNT() FROM TrailheadEntityUpdate__c];
         for(sObject debugLog : newRecordsMap.values()) {
             if((syncJobIsFinished(debugLog) == true) && (numTrailheadEntityUpdateRecords > 0)) {
-                // enqueue job that makes callout
-                // maybe add a check here to see if there are any trailheadentityupdate records
-                /*
-                Queues async job to make callout to subscriber
-                with IDs of custom object records.
-                */
+                System.scheduleBatch(new BatchTrailheadEntityUpdateSync(), 'BatchTrailheadEntityUpdateSync', 5, 200);
             }
         }
     }

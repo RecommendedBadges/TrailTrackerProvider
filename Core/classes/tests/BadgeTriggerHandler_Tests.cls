@@ -2,10 +2,7 @@
 private class BadgeTriggerHandler_Tests {
     @isTest
     private static void it_should_generate_events_for_tracked_badge_fields() {
-        BadgeTS badgeGenerator = new BadgeTS(new Map<String, Object>{
-            'generateRecordIDs' => false,
-            'numberToGenerate' => 1
-        });
+        BadgeTS badgeGenerator = new BadgeTS(new Map<String, Object>{'generateRecordIDs' => false});
         insert badgeGenerator.generate();
 
         TrailheadEntities.trackedFieldsByObject = new Map<String, List<String>>{
@@ -22,9 +19,9 @@ private class BadgeTriggerHandler_Tests {
             'Expected three DML statements - two for badge updates and one for Trailhead Entity Update Event publish on tracked field.'
         );
         Assert.areEqual(
-            3,
+            600,
             Limits.getDmlRows(),
-            'Expected three DML rows - two for badge updates and one for Trailhead Entity Update Event publish on tracked field.'
+            'Expected 600 DML rows - 400 from badge updates and 200 from Trailhead Entity Update Event publish on tracked field.'
         );
         Test.stopTest();
     }

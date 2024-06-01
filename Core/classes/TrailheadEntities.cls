@@ -55,31 +55,32 @@ public inherited sharing class TrailheadEntities {
         List<TrailheadEntityUpdateEvent__e> updateEvents = new List<TrailheadEntityUpdateEvent__e>();
         for(sObject updatedRecord : updatedRecordsMap.values()) {
             TrailheadEntityUpdateEvent__e updateEvent = new TrailheadEntityUpdateEvent__e();
+            Set<String> updatedFields = new Set<String>();
+
             for(String trackedField : trackedFieldsByObject.get(this.entityType)) {
                 sObject oldRecord = oldRecordsMap.get(String.valueOf(updatedRecord.get('Id')));
-                Object newFieldValue = getValueIfChanged(updatedRecord, oldRecord, trackedField);
                 String updateEventFieldName = trackedField.removeStart(this.namespacePrefix);
-                
                 // if the field is a standard field, it doesn't have the __c suffix, but the corresponding platform event field is a custom field, so it will have the __c suffix
                 if(trackedField.indexOf('__c') == -1) {
                     updateEventFieldName += '__c';
                 }
-                if(newFieldValue != null) {
-                    updateEvent.put(updateEventFieldName, newFieldValue);
-                }
+                populateFieldIfTrackedAndChanged(updatedRecord, oldRecord, trackedField, updateEventFieldName, updateEvent, updatedFields);
             }
+
             if(updateEvent.getPopulatedFieldsAsMap().isEmpty() == false) {
                 updateEvent.APIName__c = String.valueOf(updatedRecord.get('trailheadapp__API_Name__c'));
+                updateEvent.EntityType__c = this.entityType;
+                updateEvent.UpdatedFields__c = String.join(new List<String>(updatedFields), ';');
                 updateEvents.add(updateEvent);
             }
         }
         return updateEvents;
     }
 
-    private static Object getValueIfChanged(sObject updatedRecord, sObject oldRecord, String fieldName) {
+    private static void populateFieldIfTrackedAndChanged(sObject updatedRecord, sObject oldRecord, String fieldName, String updateEventFieldName, TrailheadEntityUpdateEvent__e updateEvent, Set<String> updatedFields) { 
         if(updatedRecord.get(fieldName) != oldRecord.get(fieldName)) {
-            return updatedRecord.get(fieldName);
+            updateEvent.put(updateEventFieldName, updatedRecord.get(fieldName));
+            updatedFields.add(updateEventFieldName);
         }
-        return null;
     }
 }
