@@ -41,6 +41,7 @@ public without sharing class TrailheadEntityUpdateEventTriggerHandler extends Tr
             }
             trailheadEntityUpdates.add(teu);
         }
-        Database.insert(trailheadEntityUpdates);
+        List<Database.SaveResult> saveResults = Database.insert(trailheadEntityUpdates, false);
+        DMLUtils.logErrors(saveResults, 'TrailheadEntityUpdateEventTriggerHandler');
     }
 }

@@ -4,11 +4,17 @@
  * @since 06-01-2023
  * @group Core
  */
-public without sharing class BatchTrailheadEntityUpdateSync implements Database.Batchable<sObject>, Database.AllowsCallouts {
+public without sharing class BatchTrailheadEntityUpdateSync implements Database.Batchable<sObject>, Database.AllowsCallouts, Database.Stateful {
     private static final String BADGE_ENTITY_TYPE = 'trailheadapp__Badge__c';
     private static final String TRAIL_ENTITY_TYPE = 'trailheadapp__Trail__c';
     private static final Map<String, String> nameFieldByEntityType = new Map<String, String>{BADGE_ENTITY_TYPE => 'BadgeName__c', TRAIL_ENTITY_TYPE => 'TrailName__c'};
-    
+    private Integer numSuccessfulUpdates;
+
+    @SuppressWarnings('PMD.ApexDoc')
+    public BatchTrailheadEntityUpdateSync() {
+        this.numSuccessfulUpdates = 0;
+    }
+
     /**
      * Returns all TrailheadEntityUpdate__c records in org. 
      * @param bc BatchableContext for ongoing Apex batch job.
@@ -47,28 +53,36 @@ public without sharing class BatchTrailheadEntityUpdateSync implements Database.
             }
         }
 
-        HttpRequest request = new HttpRequest();
-        request.setEndpoint('callout:RecommendedBadges/services/apexrest/TrailheadEntities/');
-        request.setMethod('PATCH');
-        request.setHeader('Content-Type', 'application/json');
-        request.setBody('{"updatedBadgesByAPIName": ' + JSON.serialize(updatedBadgesByAPIName) + ', "updatedTrailsByAPIName": ' + JSON.serialize(updatedTrailsByAPIName) + '}');
-        System.debug(request.getBody());
-        HttpResponse response = new Http().send(request);
-
-        if(response.getStatusCode() == 204) {
-            Database.delete(trailheadEntityUpdates);
-            Database.emptyRecycleBin(trailheadEntityUpdates);
-        } else {
-            // log error
-            // also give logs of how many updated
+        try {
+            HttpRequest request = new HttpRequest();
+            request.setEndpoint('callout:RecommendedBadges/services/apexrest/TrailheadEntities/');
+            request.setMethod('PATCH');
+            request.setHeader('Content-Type', 'application/json');
+            request.setBody('{"updatedBadgesByAPIName": ' + JSON.serialize(updatedBadgesByAPIName) + ', "updatedTrailsByAPIName": ' + JSON.serialize(updatedTrailsByAPIName) + '}');
+            System.debug(request.getBody());
+            HttpResponse response = new Http().send(request);
+    
+            if(response.getStatusCode() == 204) {
+                this.numSuccessfulUpdates += trailheadEntityUpdates.size();
+                Database.delete(trailheadEntityUpdates);
+                Database.emptyRecycleBin(trailheadEntityUpdates);
+            } else {
+                Logger.error(new LogMessage('Error with callout to Recommended Badges. {0}. {1}', response.toString(), response.getBody()));
+                Logger.saveLog();
+            }
+        } catch(Exception e) {
+            Logger.error(new LogMessage('Error with callout to Recommended Badges. {0}: {1}. \n{2}', e.getTypeName(), e.getMessage(), e.getStackTraceString()));
         }
     }
 
     /**
-     * 
+     * Logs number of successful Trailhead Entity updates.
      * @param bc Batchable context for ongoing Apex batch job.
      */    
     public void finish(Database.BatchableContext bc) {
-
+        if(this.numSuccessfulUpdates > 0) {
+            Logger.info(new LogMessage('Successfully updated {0} Trailhead Entities.', this.numSuccessfulUpdates));
+            Logger.saveLog();
+        }
     }
 }

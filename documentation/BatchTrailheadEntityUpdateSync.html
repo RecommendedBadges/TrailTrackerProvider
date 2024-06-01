@@ -91,20 +91,20 @@
 
           <div class="section">
 
-            <h2 class="class-title top-level-type" id="BadgeTriggerHandler">
-              <span>BadgeTriggerHandler</span>
+            <h2 class="class-title top-level-type" id="BatchTrailheadEntityUpdateSync">
+              <span>BatchTrailheadEntityUpdateSync</span>
             </h2>
             <div class="class-container">
 
               <div class="class-description">
-                Trigger handler for trailheadapp__Badge__c custom object
+                Batch Apex job to make callout to Recommended Badges org with details of changes to trailheadapp__Badge__c and trailheadapp__Trail__c records.
               </div>
               <div class="class-subtitle">
                 Signature
               </div>
 
               <div class="class-signature">
-                public without sharing class BadgeTriggerHandler extends TriggerHandler
+                public without sharing class BatchTrailheadEntityUpdateSync implements Database.Batchable&lt;sObject&gt;, Database.AllowsCallouts
               </div>
               <div class="class-subtitle">
                 Author
@@ -120,69 +120,104 @@
               </div>
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">BadgeTriggerHandler Constructors</h3>
+              <h3 class="subsection-title methods">BatchTrailheadEntityUpdateSync Methods</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method public">
-                    <a class="methods-toc__entry " href="#BadgeTriggerHandler.BadgeTriggerHandler">
-                      BadgeTriggerHandler ()
+                    <a class="methods-toc__entry " href="#BatchTrailheadEntityUpdateSync.execute">
+                      execute (bc, trailheadEntityUpdates)
                     </a>
 
                     <div class="methods-toc__description">
-                      Constructor for trigger handler
+                      Makes callout to Recommended Badges org with details of changed trailheadapp__Badge__c and trailheadapp__Trail__c records. Hard deletes corresponding Trailhead Entity Update records if successful.
+                    </div>
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#BatchTrailheadEntityUpdateSync.finish">
+                      finish (bc)
+                    </a>
+
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#BatchTrailheadEntityUpdateSync.start">
+                      start (bc)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Returns all TrailheadEntityUpdate__c records in org.
                     </div>
                   </li>
                 </ul>
                 <div class="method public">
-                  <h4 class="method-title " id="BadgeTriggerHandler.BadgeTriggerHandler">
-                    <span>BadgeTriggerHandler()</span>
+                  <h4 class="method-title " id="BatchTrailheadEntityUpdateSync.execute">
+                    <span>execute(bc, trailheadEntityUpdates)</span>
                   </h4>
                   <div class="method-description">
-                    Constructor for trigger handler
+                    Makes callout to Recommended Badges org with details of changed trailheadapp__Badge__c and trailheadapp__Trail__c records. Hard deletes corresponding Trailhead Entity Update records if successful.
                   </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    public BadgeTriggerHandler()
+                    public void execute(Database.BatchableContext bc, List&lt;TrailheadEntityUpdate__c&gt; trailheadEntityUpdates)
                   </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">bc</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Database.BatchableContext</code>
+                  </div>
+                  <div class="param-description">Batchable context for ongoing Apex batch job.</div>
+                  <div class="param-name">trailheadEntityUpdates</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">List&lt;TrailheadEntityUpdate__c&gt;</code>
+                  </div>
+                  <div class="param-description">Trailhead Entity Update records for current batch.</div>
                 </div>
-              </div>
-            </div>
-            <div class="subsection methods">
-              <h3 class="subsection-title methods">BadgeTriggerHandler Methods</h3>
-              <div class="methods-container">
-                <ul class="methods-toc">
-                  <li class="method protected">
-                    <a class="methods-toc__entry " href="#BadgeTriggerHandler.afterUpdate">
-                      afterUpdate (updatedRecordsMap, oldRecordsMap)
-                    </a>
-
-                  </li>
-                </ul>
-                <div class="method protected">
-                  <h4 class="method-title " id="BadgeTriggerHandler.afterUpdate">
-                    <span>afterUpdate(updatedRecordsMap, oldRecordsMap)</span>
+                <div class="method public">
+                  <h4 class="method-title " id="BatchTrailheadEntityUpdateSync.finish">
+                    <span>finish(bc)</span>
                   </h4>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    protected override void afterUpdate(Map&lt;Id, sObject&gt; updatedRecordsMap, Map&lt;Id, sObject&gt; oldRecordsMap)
+                    public void finish(Database.BatchableContext bc)
                   </div>
                   <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">updatedRecordsMap</div>
+                  <div class="param-name">bc</div>
                   <div class="param-type">
-                    Type: <code class="code-inline">Map&lt;Id, sObject&gt;</code>
+                    Type: <code class="code-inline">Database.BatchableContext</code>
                   </div>
-                  <div class="param-description">Map of IDs to updated trailheadapp__Badge__c records</div>
-                  <div class="param-name">oldRecordsMap</div>
+                  <div class="param-description">Batchable context for ongoing Apex batch job.</div>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="BatchTrailheadEntityUpdateSync.start">
+                    <span>start(bc)</span>
+                  </h4>
+                  <div class="method-description">
+                    Returns all TrailheadEntityUpdate__c records in org.
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public Database.QueryLocator start(Database.BatchableContext bc)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">bc</div>
                   <div class="param-type">
-                    Type: <code class="code-inline">Map&lt;Id, sObject&gt;</code>
+                    Type: <code class="code-inline">Database.BatchableContext</code>
                   </div>
-                  <div class="param-description">Map of IDs to old trailheadapp__Badge__c records</div>
+                  <div class="param-description">BatchableContext for ongoing Apex batch job.</div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    <code class="code-inline">Database.QueryLocator</code>
+                  </div>
                 </div>
               </div>
             </div>

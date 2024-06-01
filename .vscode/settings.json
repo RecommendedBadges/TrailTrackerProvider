@@ -9,5 +9,5 @@
     ".pmdrules.xml"
   ],
   "salesforcedx-vscode-core.detectConflictsAtSync": true,
-  "salesforcedx-vscode-core.push-or-deploy-on-save.preferDeployOnSave": true
+  "salesforcedx-vscode-core.push-or-deploy-on-save.preferDeployOnSave": false
 }
