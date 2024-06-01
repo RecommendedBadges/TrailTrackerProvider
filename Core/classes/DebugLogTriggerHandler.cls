@@ -9,6 +9,7 @@ public without sharing class DebugLogTriggerHandler extends TriggerHandler {
     private static final String	SYNC_FINISHED_METHOD = 'finish';
     private static final String SYNC_FINISHED_MESSAGE = 'Finished Trail Tracker sync.';
     private static final String SYNC_FINISHED_SEVERITY = 'INFO';
+    private static Boolean scheduledBatch = false;
     
     /**
      * Constructor for trigger handler
@@ -24,8 +25,9 @@ public without sharing class DebugLogTriggerHandler extends TriggerHandler {
     protected override void afterInsert(Map<Id, sObject> newRecordsMap) {
         Integer numTrailheadEntityUpdateRecords = [SELECT COUNT() FROM TrailheadEntityUpdate__c];
         for(sObject debugLog : newRecordsMap.values()) {
-            if((syncJobIsFinished(debugLog) == true) && (numTrailheadEntityUpdateRecords > 0)) {
+            if((syncJobIsFinished(debugLog) == true) && (numTrailheadEntityUpdateRecords > 0) && (scheduledBatch = false)) {
                 System.scheduleBatch(new BatchTrailheadEntityUpdateSync(), 'BatchTrailheadEntityUpdateSync', 5, 200);
+                scheduledBatch = true;
             }
         }
     }
