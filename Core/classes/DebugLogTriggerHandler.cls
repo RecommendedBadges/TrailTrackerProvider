@@ -5,9 +5,13 @@
  * @group Core
  */
 public without sharing class DebugLogTriggerHandler extends TriggerHandler {
+    @TestVisible
     private static final String SYNC_FINISHED_CLASS = 'TrailheadSync';
+    @TestVisible
     private static final String	SYNC_FINISHED_METHOD = 'finish';
+    @TestVisible
     private static final String SYNC_FINISHED_MESSAGE = 'Finished Trail Tracker sync.';
+    @TestVisible
     private static final String SYNC_FINISHED_SEVERITY = 'INFO';
     private static Boolean scheduledBatch = false;
     
@@ -25,7 +29,7 @@ public without sharing class DebugLogTriggerHandler extends TriggerHandler {
     protected override void afterInsert(Map<Id, sObject> newRecordsMap) {
         Integer numTrailheadEntityUpdateRecords = [SELECT COUNT() FROM TrailheadEntityUpdate__c];
         for(sObject debugLog : newRecordsMap.values()) {
-            if((syncJobIsFinished(debugLog) == true) && (numTrailheadEntityUpdateRecords > 0) && (scheduledBatch = false)) {
+            if((syncJobIsFinished(debugLog) == true) && (numTrailheadEntityUpdateRecords > 0) && (scheduledBatch == false)) {
                 System.scheduleBatch(new BatchTrailheadEntityUpdateSync(), 'BatchTrailheadEntityUpdateSync', 5, 200);
                 scheduledBatch = true;
             }
