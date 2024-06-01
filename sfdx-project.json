@@ -5,6 +5,9 @@
       "default": true,
       "dependencies": [
         {
+          "package": "NebulaLogger"
+        },
+        {
           "package": "TrailTracker"
         },
         {
@@ -35,6 +38,7 @@
   "sourceApiVersion": "57.0",
   "packageAliases": {
     "Core": "0Ho8b000000oLqTCAU",
+    "NebulaLogger": "04t5Y000001Mk8YQAS",
     "TestSupport": "04t8c000000vFyXAAU",
     "TrailTracker": "04t1Q000001ACOnQAO",
     "TriggerHandler": "0Ho8b000000oLqYCAU",
