@@ -11,12 +11,9 @@ public class DebugLogTS extends TestSupport.DataGeneration  {
     }
 
     protected override Map<Schema.SObjectField, TestSupport.TestDataField> loadDefaultSpecsByField() {
-        DateTime now = DateTime.now();
         return new Map<Schema.SObjectField, TestSupport.TestDataField> {
             trailheadapp__Debug_Log__c.trailheadapp__Class__c => new CounterSuffixField(trailheadapp__Debug_Log__c.trailheadapp__Class__c, 'Test'),
-            trailheadapp__Debug_Log__c.trailheadapp__Datetime__c => new TestSupport.TestDataField(
-                trailheadapp__Debug_Log__c.trailheadapp__Datetime__c, String.format('{0}-{1}-{2}T{3}:{4}:{5}Z', new List<Object>{now.year(), now.month(), now.day(), now.hour(), now.minute(), now.second()})
-            ),
+            trailheadapp__Debug_Log__c.trailheadapp__Datetime__c => new DateTimeField(trailheadapp__Debug_Log__c.trailheadapp__Datetime__c, DateTime.now()),
             trailheadapp__Debug_Log__c.trailheadapp__Message__c => new CounterSuffixField(trailheadapp__Debug_Log__c.trailheadapp__Message__c, 'Test message '),
             trailheadapp__Debug_Log__c.trailheadapp__Method__c => new CounterSuffixField(trailheadapp__Debug_Log__c.trailheadapp__Method__c, 'testMethod'),
             trailheadapp__Debug_Log__c.trailheadapp__Severity__c => new CounterSuffixField(trailheadapp__Debug_Log__c.trailheadapp__Severity__c, 'Test '),
