@@ -1,10 +1,11 @@
 @isTest
 public class DebugLogTS extends TestSupport.DataGeneration  {
+    @SuppressWarnings('PMD.ApexDoc')
     public DebugLogTS(Map<String, Object> options) {
-        super(options);
-        this.S_OBJECT_TYPE = 'trailheadapp__Debug_Log__c';
+        this(options, new List<TestSupport.TestDataField>());
     }
 
+    @SuppressWarnings('PMD.ApexDoc')
     public DebugLogTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
         this.S_OBJECT_TYPE = 'trailheadapp__Debug_Log__c';

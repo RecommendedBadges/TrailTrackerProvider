@@ -53,25 +53,27 @@ public without sharing class BatchTrailheadEntityUpdateSync implements Database.
             }
         }
 
-        try {
-            HttpRequest request = new HttpRequest();
-            request.setEndpoint('callout:RecommendedBadges/services/apexrest/TrailheadEntities/');
-            request.setMethod('PATCH');
-            request.setHeader('Content-Type', 'application/json');
-            request.setBody('{"updatedBadgesByAPIName": ' + JSON.serialize(updatedBadgesByAPIName) + ', "updatedTrailsByAPIName": ' + JSON.serialize(updatedTrailsByAPIName) + '}');
-            System.debug(request.getBody());
-            HttpResponse response = new Http().send(request);
-    
-            if(response.getStatusCode() == 204) {
-                this.numSuccessfulUpdates += trailheadEntityUpdates.size();
-                Database.delete(trailheadEntityUpdates);
-                Database.emptyRecycleBin(trailheadEntityUpdates);
-            } else {
-                Logger.error(new LogMessage('Error with callout to Recommended Badges. {0}. {1}', response.toString(), response.getBody()));
+        if((updatedBadgesByAPIName.size() > 0) || (updatedTrailsByAPIName.size() > 0)) {
+            try {
+                HttpRequest request = new HttpRequest();
+                request.setEndpoint('callout:RecommendedBadges/services/apexrest/TrailheadEntities/');
+                request.setMethod('PATCH');
+                request.setHeader('Content-Type', 'application/json');
+                request.setBody('{"updatedBadgesByAPIName": ' + JSON.serialize(updatedBadgesByAPIName) + ', "updatedTrailsByAPIName": ' + JSON.serialize(updatedTrailsByAPIName) + '}');
+                HttpResponse response = new Http().send(request);
+        
+                if(response.getStatusCode() == 204) {
+                    this.numSuccessfulUpdates += trailheadEntityUpdates.size();
+                    Database.delete(trailheadEntityUpdates);
+                    Database.emptyRecycleBin(trailheadEntityUpdates);
+                } else {
+                    Logger.error(new LogMessage('Error with callout to Recommended Badges. {0}. {1}', response.toString(), response.getBody()));
+                    Logger.saveLog();
+                }
+            } catch(Exception e) {
+                Logger.error(new LogMessage('Error with callout to Recommended Badges. {0}: {1}. \n{2}', e.getTypeName(), e.getMessage(), e.getStackTraceString()));
                 Logger.saveLog();
             }
-        } catch(Exception e) {
-            Logger.error(new LogMessage('Error with callout to Recommended Badges. {0}: {1}. \n{2}', e.getTypeName(), e.getMessage(), e.getStackTraceString()));
         }
     }
 

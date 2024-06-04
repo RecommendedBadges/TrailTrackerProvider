@@ -1,5 +1,8 @@
 @isTest
 public class BadgeTS extends TestSupport.DataGeneration  {
+    /**
+     * Holds changed badges by value of trailheadapp__API_Name__c.
+     */    
     public Map<String, sObject> modifiedBadgesByAPIName {
         get {
             if(this.modifiedBadgesByAPIName == null) {
@@ -13,11 +16,12 @@ public class BadgeTS extends TestSupport.DataGeneration  {
         private set;
     }
 
+    @SuppressWarnings('PMD.ApexDoc')
     public BadgeTS(Map<String, Object> options) {
-        super(options);
-        this.S_OBJECT_TYPE = 'trailheadapp__Badge__c';
+        this(options, new List<TestSupport.TestDataField>());
     }
 
+    @SuppressWarnings('PMD.ApexDoc')
     public BadgeTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
         this.S_OBJECT_TYPE = 'trailheadapp__Badge__c';
