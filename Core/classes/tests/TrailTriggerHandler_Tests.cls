@@ -19,7 +19,7 @@ private class TrailTriggerHandler_Tests {
             'Expected three DML statements - two for trail updates and one for Trailhead Entity Update Event publish on tracked field.'
         );
         Assert.areEqual(
-            600,
+            trailGenerator.records.size() * 3,
             Limits.getDmlRows(),
             'Expected 600 DML rows - 400 from trail updates and 200 from Trailhead Entity Update Event publish on tracked field.'
         );

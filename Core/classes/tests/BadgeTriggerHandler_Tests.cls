@@ -19,7 +19,7 @@ private class BadgeTriggerHandler_Tests {
             'Expected three DML statements - two for badge updates and one for Trailhead Entity Update Event publish on tracked field.'
         );
         Assert.areEqual(
-            600,
+            badgeGenerator.records.size() * 3,
             Limits.getDmlRows(),
             'Expected 600 DML rows - 400 from badge updates and 200 from Trailhead Entity Update Event publish on tracked field.'
         );
