@@ -1,0 +1,16 @@
+engine:
+  targetDirectory: "${workspaceFolder}/documentation"
+  source:
+    - path: "${workspaceFolder}/Core/classes"
+  homePagePath: "${workspaceFolder}/ApexDoxHomePage.html"
+  excludes: [
+    "*_Tests.cls",
+    "*TS.cls"
+  ]
+  scope: [
+    "global",
+    "public", 
+    "protected",
+    "webService" 
+  ]
+  title: "Trail Tracker Provider"
