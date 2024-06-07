@@ -15,12 +15,12 @@
         },
         {
           "package": "TriggerHandler",
-          "versionNumber": "1.0.0.LATEST"
+          "versionNumber": "1.1.0.LATEST"
         }
       ],
       "package": "Core",
       "versionName": "Brooklyn",
-      "versionNumber": "0.1.0.NEXT",
+      "versionNumber": "1.0.0.NEXT",
       "versionDescription": "Core package for Trail Tracker Provider app. Contains objects, triggers, and other base functionality."
     },
     {
@@ -28,21 +28,23 @@
       "default": false,
       "package": "TriggerHandler",
       "versionName": "Brooklyn",
-      "versionNumber": "1.0.0.NEXT",
+      "versionNumber": "1.1.0.NEXT",
       "versionDescription": "Package to encapsulate James Simone's lightweight trigger handler."
     }
   ],
   "name": "TrailTrackerProvider",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "57.0",
+  "sourceApiVersion": "60.0",
   "packageAliases": {
     "Core": "0Ho8b000000oLqTCAU",
-    "NebulaLogger": "04t5Y000001Mk8YQAS",
+    "NebulaLogger": "04t5Y0000027L98QAE",
     "TestSupport": "04t8c000000vFyhAAE",
     "TrailTracker": "04t1Q000001ACOnQAO",
     "TriggerHandler": "0Ho8b000000oLqYCAU",
     "TriggerHandler@1.0.0-2": "04t8b000001FAa4AAG",
-    "Core@0.1.0-1": "04t8b000001FAfZAAW"
+    "Core@0.1.0-1": "04t8b000001FAfZAAW",
+    "TriggerHandler@1.1.0-1": "04t8b000000jtsMAAQ",
+    "Core@1.0.0-1": "04t8b000000jtsRAAQ"
   }
 }

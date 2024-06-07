@@ -39,5 +39,8 @@ $RECYCLE.BIN/
 # Local environment variables
 .env
 
+# Connected Apps
+unpackaged/connectedApps
+
 ## temp
 scripts/apex/calloutPOC.apex

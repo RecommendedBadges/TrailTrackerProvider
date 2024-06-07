@@ -11,4 +11,5 @@
 admin.profile
 
 # temp ignored
-#TriggerHandler
+Core
+TriggerHandler
