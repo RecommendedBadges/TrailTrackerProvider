@@ -10,7 +10,7 @@ public inherited sharing class TrailheadEntities {
     private String entityType;
     private String namespacePrefix;
     
-    @testVisible
+    @TestVisible
     private static Map<String, List<String>> trackedFieldsByObject {
         get {
             if(trackedFieldsByObject == null) {
@@ -79,7 +79,7 @@ public inherited sharing class TrailheadEntities {
 
     private static void populateFieldIfTrackedAndChanged(sObject updatedRecord, sObject oldRecord, String fieldName, String updateEventFieldName, TrailheadEntityUpdateEvent__e updateEvent, Set<String> updatedFields) { 
         if(updatedRecord.get(fieldName) != oldRecord.get(fieldName)) {
-            updateEvent.put(updateEventFieldName, updatedRecord.get(fieldName));
+            updateEvent.put(updateEventFieldName, String.valueOf(updatedRecord.get(fieldName)));
             updatedFields.add(updateEventFieldName);
         }
     }
