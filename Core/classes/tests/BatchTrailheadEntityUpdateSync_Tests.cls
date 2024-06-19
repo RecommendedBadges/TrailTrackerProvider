@@ -33,7 +33,7 @@ private class BatchTrailheadEntityUpdateSync_Tests {
         insert trailheadEntityUpdateGenerator.setFieldSpec(new TestSupport.TestDataField(TrailheadEntityUpdate__c.URL__c, 'www.updatedurl.com')).generate();
         
         Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new CustomHttpCalloutMock('', 204));
+        Test.setMock(HttpCalloutMock.class, new CustomHttpCalloutMock('', 200));
         Database.executeBatch(new BatchTrailheadEntityUpdateSync(), trailheadEntityUpdateGenerator.records.size());
         Test.stopTest();
         

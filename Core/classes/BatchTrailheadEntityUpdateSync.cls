@@ -63,7 +63,7 @@ public without sharing class BatchTrailheadEntityUpdateSync implements Database.
                 System.debug(request.getBody());
                 HttpResponse response = new Http().send(request);
         
-                if(response.getStatusCode() == 204) {
+                if(response.getStatusCode() == 200) {
                     this.numSuccessfulUpdates += trailheadEntityUpdates.size();
                     Database.delete(trailheadEntityUpdates);
                     Database.emptyRecycleBin(trailheadEntityUpdates);
