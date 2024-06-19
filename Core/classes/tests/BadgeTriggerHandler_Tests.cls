@@ -25,4 +25,33 @@ private class BadgeTriggerHandler_Tests {
         );
         Test.stopTest();
     }
+
+    @isTest
+    private static void it_should_ignore_changes_to_archived_badges() {
+        BadgeTS badgeGenerator = new BadgeTS(
+            new Map<String, Object>{'generateRecordIDs' => false},
+            new List<TestSupport.TestDataField>{new TestSupport.TestDataField(trailheadapp__Badge__c.trailheadapp__Archived__c, true)}    
+        );
+        insert badgeGenerator.generate();
+
+        TrailheadEntities.trackedFieldsByObject = new Map<String, List<String>>{
+            'trailheadapp__Badge__c' => new List<String>{'trailheadapp__Type__c'}
+        };
+
+        Test.startTest();
+        update badgeGenerator.changeField(trailheadapp__Badge__c.trailheadapp__Type__c).modifiedRecords;
+        update badgeGenerator.changeField(trailheadapp__Badge__c.trailheadapp__URL__c, 'www.newtest.com').modifiedRecords;
+
+        Assert.areEqual(
+            2, 
+            Limits.getDmlStatements(), 
+            'Expected two DML statements - one for each badge update.'
+        );
+        Assert.areEqual(
+            badgeGenerator.records.size() * 2,
+            Limits.getDmlRows(),
+            'Expected 400 DML rows - all from badge updates.'
+        );
+        Test.stopTest();
+    }
 }

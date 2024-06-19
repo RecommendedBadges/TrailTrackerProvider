@@ -25,4 +25,33 @@ private class TrailTriggerHandler_Tests {
         );
         Test.stopTest();
     }
+
+    @isTest
+    private static void it_should_ignore_changes_to_archived_trails() {
+        TrailTS trailGenerator = new TrailTS(
+            new Map<String, Object>{'generateRecordIDs' => false},
+            new List<TestSupport.TestDataField>{new TestSupport.TestDataField(trailheadapp__Trail__c.trailheadapp__Archived__c, true)}    
+        );
+        insert trailGenerator.generate();
+
+        TrailheadEntities.trackedFieldsByObject = new Map<String, List<String>>{
+            'trailheadapp__Trail__c' => new List<String>{'trailheadapp__Level__c'}
+        };
+
+        Test.startTest();
+        update trailGenerator.changeField(trailheadapp__Trail__c.trailheadapp__Level__c).modifiedRecords;
+        update trailGenerator.changeField(trailheadapp__Trail__c.trailheadapp__URL__c, 'www.newtest.com').modifiedRecords;
+
+        Assert.areEqual(
+            2, 
+            Limits.getDmlStatements(), 
+            'Expected two DML statements - one for each trail update.'
+        );
+        Assert.areEqual(
+            trailGenerator.records.size() * 2,
+            Limits.getDmlRows(),
+            'Expected 400 DML rows - all from trail updates.'
+        );
+        Test.stopTest();
+    }
 }

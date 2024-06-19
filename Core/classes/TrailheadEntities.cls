@@ -9,6 +9,7 @@ public inherited sharing class TrailheadEntities {
     private Map<Id, sObject> oldRecordsMap;
     private String entityType;
     private String namespacePrefix;
+    private static final String ARCHIVED_FIELD = 'trailheadapp__Archived__c';
     
     @TestVisible
     private static Map<String, List<String>> trackedFieldsByObject {
@@ -54,11 +55,18 @@ public inherited sharing class TrailheadEntities {
     public List<TrailheadEntityUpdateEvent__e> generateUpdateEvents() {
         List<TrailheadEntityUpdateEvent__e> updateEvents = new List<TrailheadEntityUpdateEvent__e>();
         for(sObject updatedRecord : updatedRecordsMap.values()) {
+            sObject oldRecord = oldRecordsMap.get(String.valueOf(updatedRecord.get('Id')));
+
+            System.debug(updatedRecord.get(ARCHIVED_FIELD));
+            System.debug(oldRecord.get(ARCHIVED_FIELD));
+            // skip current iteration if old and new record both have Archived set to true
+            if((updatedRecord.get(ARCHIVED_FIELD) == true) && (oldRecord.get(ARCHIVED_FIELD) == true)) {
+                continue;
+            }
+
             TrailheadEntityUpdateEvent__e updateEvent = new TrailheadEntityUpdateEvent__e();
             Set<String> updatedFields = new Set<String>();
-
             for(String trackedField : trackedFieldsByObject.get(this.entityType)) {
-                sObject oldRecord = oldRecordsMap.get(String.valueOf(updatedRecord.get('Id')));
                 String updateEventFieldName = trackedField.removeStart(this.namespacePrefix);
                 // if the field is a standard field, it doesn't have the __c suffix, but the corresponding platform event field is a custom field, so it will have the __c suffix
                 if(trackedField.indexOf('__c') == -1) {

@@ -123,4 +123,43 @@ private class TrailheadEntities_Tests {
 
         Assert.areEqual(0, trailheadEntityUpdateEvents.size(), 'No events expected when changing non-tracked Trail field.');
     }
+
+    @isTest
+    private static void it_should_ignore_changes_to_archived_badges() {
+        BadgeTS badgeGenerator = new BadgeTS(
+            new Map<String, Object>{},
+            new List<TestSupport.TestDataField>{new TestSupport.TestDataField(trailheadapp__Badge__c.trailheadapp__Archived__c, true)}
+        );
+        badgeGenerator.generate();
+        badgeGenerator.changeField(trailheadapp__Badge__c.trailheadapp__Type__c);
+
+        TrailheadEntities te = new TrailheadEntities(new Map<Id,sObject>(badgeGenerator.modifiedRecords), new Map<Id, sObject>(badgeGenerator.records), 'trailheadapp__Badge__c');
+        TrailheadEntities.trackedFieldsByObject =  new Map<String, List<String>>{'trailheadapp__Badge__c' => new List<String>{'trailheadapp__Type__c'}};
+
+        Test.startTest();
+        List<TrailheadEntityUpdateEvent__e> trailheadEntityUpdateEvents = te.generateUpdateEvents();
+        Test.stopTest();
+
+        Assert.areEqual(0, trailheadEntityUpdateEvents.size(), 'No events expected when changing tracked fields on archived Badges.');
+    }
+
+    @isTest
+    private static void it_should_ignore_changes_to_archived_trails() {
+        TrailTS trailGenerator = new TrailTS(
+            new Map<String, Object>{},
+            new List<TestSupport.TestDataField>{new TestSupport.TestDataField(trailheadapp__Trail__c.trailheadapp__Archived__c, true)}
+        );
+        trailGenerator.generate();
+        trailGenerator.changeField(trailheadapp__Trail__c.trailheadapp__Level__c);
+    
+
+        TrailheadEntities te = new TrailheadEntities(new Map<Id, sObject>(trailGenerator.modifiedRecords), new Map<Id, sObject>(trailGenerator.records), 'trailheadapp__Trail__c');
+        TrailheadEntities.trackedFieldsByObject =  new Map<String, List<String>>{'trailheadapp__Trail__c' => new List<String>{'trailheadapp__Level__c'}};
+
+        Test.startTest();
+        List<TrailheadEntityUpdateEvent__e> trailheadEntityUpdateEvents = te.generateUpdateEvents();
+        Test.stopTest();
+
+        Assert.areEqual(0, trailheadEntityUpdateEvents.size(), 'No events expected when changing archived Trails.');
+    }
 }
