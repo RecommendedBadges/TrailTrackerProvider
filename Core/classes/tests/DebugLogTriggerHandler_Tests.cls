@@ -1,6 +1,7 @@
 @isTest
 private class DebugLogTriggerHandler_Tests {
-    private static final String BATCH_CLASS_NAME = 'BatchTrailheadEntityUpdateSync';
+    private static final String UPDATE_BATCH_CLASS_NAME = 'BatchTrailheadEntityUpdateSync';
+    private static final String DELETE_BATCH_CLASS_NAME = 'BatchTrailheadEntityDeleteSync';
     private static final String ASYNC_JOB_TYPE = 'BatchApex';
 
     @isTest
@@ -14,6 +15,12 @@ private class DebugLogTriggerHandler_Tests {
             UpdatedFields__c = 'Products__c'
         );
         insert trailheadEntityUpdate;
+
+        TrailheadEntityDelete__c trailheadEntityDelete = new TrailheadEntityDelete__c(
+            APIName__c = 'Test',
+            EntityType__c = 'trailheadapp__Badge__c'
+        );
+        insert trailheadEntityDelete;
 
         trailheadapp__Debug_Log__c syncFinishLog = new trailheadapp__Debug_Log__c(
             trailheadapp__Class__c = DebugLogTriggerHandler.SYNC_FINISHED_CLASS,
@@ -29,16 +36,22 @@ private class DebugLogTriggerHandler_Tests {
 
         Assert.areEqual(
             0, 
-            [SELECT Status FROM AsyncApexJob WHERE ApexClass.Name = :BATCH_CLASS_NAME AND JobType = :ASYNC_JOB_TYPE].size(), 
+            [SELECT Status FROM AsyncApexJob WHERE ApexClass.Name IN (:UPDATE_BATCH_CLASS_NAME, :DELETE_BATCH_CLASS_NAME) AND JobType = :ASYNC_JOB_TYPE].size(), 
             'Did not expect BatchTrailheadEntityUpdateSync to be scheduled without sync job finishing first.'
         );
 
         insert syncFinishLog;
         Test.stopTest();
 
-        List<AsyncApexJob> asyncApexJobs = [SELECT Status FROM AsyncApexJob WHERE ApexClass.Name = :BATCH_CLASS_NAME AND JobType = :ASYNC_JOB_TYPE];
-        Assert.areEqual(1, asyncApexJobs.size(), 'Expected BatchTrailheadEntityUpdateSync to be scheduled after sync job finishes.');
-        Assert.areEqual('Queued', asyncApexJobs[0].Status, 'Expected BatchTrailheadEntityUpdateSync to be scheduled after sync job finishes.');
+        List<AsyncApexJob> updateBatchJobs = [SELECT Id, Status FROM AsyncApexJob WHERE ApexClass.Name = :UPDATE_BATCH_CLASS_NAME AND JobType = :ASYNC_JOB_TYPE];
+        List<AsyncApexJob> deleteBatchJobs = [SELECT Id, Status FROM AsyncApexJob WHERE ApexClass.Name = :DELETE_BATCH_CLASS_NAME AND JobType = :ASYNC_JOB_TYPE];
+        Assert.areEqual(1, updateBatchJobs.size(), 'Expected BatchTrailheadEntityUpdateSync to be scheduled after sync job finishes.');
+        Assert.areEqual('Queued', updateBatchJobs[0].Status, 'Expected BatchTrailheadEntityUpdateSync to be scheduled after sync job finishes.');
+        Assert.areEqual(1, deleteBatchJobs.size(), 'Expected BatchTrailheadEntityDeleteSync to be scheduled after sync job finishes.');
+        Assert.areEqual('Queued', deleteBatchJobs[0].Status, 'Expected BatchTrailheadEntityDeleteSync to be scheduled after sync job finishes.');
+        
+        System.abortJob(updateBatchJobs[0].Id);
+        System.abortJob(deleteBatchJobs[0].Id);
     }
 
     @isTest
@@ -58,8 +71,30 @@ private class DebugLogTriggerHandler_Tests {
 
         Assert.areEqual(
             0, 
-            [SELECT Status FROM AsyncApexJob WHERE ApexClass.Name = :BATCH_CLASS_NAME AND JobType = :ASYNC_JOB_TYPE].size(),
+            [SELECT Status FROM AsyncApexJob WHERE ApexClass.Name = :UPDATE_BATCH_CLASS_NAME AND JobType = :ASYNC_JOB_TYPE].size(),
             'Did not expect BatchTrailheadEntityUpdateSync to be scheduled when there are no Trailhead Entity Update records.'
+        );
+    }
+
+    @isTest
+    private static void it_should_not_enqueue_batch_job_when_no_deletes() {
+        trailheadapp__Debug_Log__c syncFinishLog = new trailheadapp__Debug_Log__c(
+            trailheadapp__Class__c = DebugLogTriggerHandler.SYNC_FINISHED_CLASS,
+            trailheadapp__Method__c = DebugLogTriggerHandler.SYNC_FINISHED_METHOD,
+            trailheadapp__Message__c = DebugLogTriggerHandler.SYNC_FINISHED_MESSAGE,
+            trailheadapp__Severity__c = DebugLogTriggerHandler.SYNC_FINISHED_SEVERITY,
+            trailheadapp__DateTime__c = DateTime.now(),
+            trailheadapp__Transaction__c = 'current transaction'
+        );
+
+        Test.startTest();
+        insert syncFinishLog;
+        Test.stopTest();
+
+        Assert.areEqual(
+            0, 
+            [SELECT Status FROM AsyncApexJob WHERE ApexClass.Name = :DELETE_BATCH_CLASS_NAME AND JobType = :ASYNC_JOB_TYPE].size(),
+            'Did not expect BatchTrailheadEntityDeleteSync to be scheduled when there are no Trailhead Entity Delete records.'
         );
     }
 
@@ -83,12 +118,24 @@ private class DebugLogTriggerHandler_Tests {
         );
         insert trailheadEntityUpdate;
 
+        TrailheadEntityDelete__c trailheadEntityDelete = new TrailheadEntityDelete__c(
+            APIName__c = 'Test',
+            EntityType__c = 'trailheadapp__Badge__c'
+        );
+        insert trailheadEntityDelete;
+
         Test.startTest();
         insert debugLogGenerator.generate();
         Test.stopTest();
 
-        List<AsyncApexJob> asyncApexJobs = [SELECT Status FROM AsyncApexJob WHERE ApexClass.Name = :BATCH_CLASS_NAME AND JobType = :ASYNC_JOB_TYPE];
-        Assert.areEqual(1, asyncApexJobs.size(), 'Expected BatchTrailheadEntityUpdateSync to be scheduled once in transaction after sync job finishes.');
-        Assert.areEqual('Queued', asyncApexJobs[0].Status, 'Expected BatchTrailheadEntityUpdateSync to be scheduled after sync job finishes.');
+        List<AsyncApexJob> updateBatchJobs = [SELECT Status FROM AsyncApexJob WHERE ApexClass.Name = :UPDATE_BATCH_CLASS_NAME AND JobType = :ASYNC_JOB_TYPE];
+        Assert.areEqual(1, updateBatchJobs.size(), 'Expected BatchTrailheadEntityUpdateSync to be scheduled once in transaction after sync job finishes.');
+        Assert.areEqual('Queued', updateBatchJobs[0].Status, 'Expected BatchTrailheadEntityUpdateSync to be scheduled after sync job finishes.');
+        List<AsyncApexJob> deleteBatchJobs = [SELECT Status FROM AsyncApexJob WHERE ApexClass.Name = :DELETE_BATCH_CLASS_NAME AND JobType = :ASYNC_JOB_TYPE];
+        Assert.areEqual(1, deleteBatchJobs.size(), 'Expected BatchTrailheadEntityDeleteSync to be scheduled once in transaction after sync job finishes.');
+        Assert.areEqual('Queued', deleteBatchJobs[0].Status, 'Expected BatchTrailheadEntityDeleteSync to be scheduled after sync job finishes.');
+
+        System.abortJob(updateBatchJobs[0].Id);
+        System.abortJob(deleteBatchJobs[0].Id);
     }
 }
