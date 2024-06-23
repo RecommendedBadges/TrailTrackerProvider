@@ -3,12 +3,12 @@ public class TrailTS extends TestSupport.DataGeneration  {
     /**
      * Holds changed badges by value of trailheadapp__API_Name__c.
      */    
-    public Map<String, sObject> modifiedTrailsByAPIName {
+    public Map<String, trailheadapp__Trail__c> modifiedTrailsByAPIName {
         get {
             if(this.modifiedTrailsByAPIName == null) {
-                this.modifiedTrailsByAPIName = new Map<String, sObject>();
+                this.modifiedTrailsByAPIName = new Map<String, trailheadapp__Trail__c>();
                 for(sObject modifiedRecord : this.modifiedRecords) {
-                    this.modifiedTrailsByAPIName.put(String.valueOf(modifiedRecord.get('trailheadapp__API_Name__c')), modifiedRecord);
+                    this.modifiedTrailsByAPIName.put(String.valueOf(modifiedRecord.get('trailheadapp__API_Name__c')), (trailheadapp__Trail__c) modifiedRecord);
                 }
             }
             return this.modifiedTrailsByAPIName;

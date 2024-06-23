@@ -22,7 +22,7 @@ public without sharing class BatchTrailheadEntityUpdateSync implements Database.
      */
     public Database.QueryLocator start(Database.BatchableContext bc) {
         return Database.getQueryLocator(
-            'SELECT APIName__c, Archived__c, Description__c, EntityType__c, Icon__c, Level__c, Name__c, Products__c, Type__c, UpdatedFields__c, URL__c FROM TrailheadEntityUpdate__c'
+            'SELECT Id, APIName__c, Description__c, EntityType__c, Icon__c, Level__c, Name__c, Products__c, Type__c, UpdatedFields__c, URL__c FROM TrailheadEntityUpdate__c'
         );
     }
 
@@ -60,7 +60,6 @@ public without sharing class BatchTrailheadEntityUpdateSync implements Database.
                 request.setMethod('PATCH');
                 request.setHeader('Content-Type', 'application/json');
                 request.setBody('{"updatedBadgesByAPIName": ' + JSON.serialize(updatedBadgesByAPIName) + ', "updatedTrailsByAPIName": ' + JSON.serialize(updatedTrailsByAPIName) + '}');
-                System.debug(request.getBody());
                 HttpResponse response = new Http().send(request);
         
                 if(response.getStatusCode() == 200) {

@@ -3,12 +3,12 @@ public class BadgeTS extends TestSupport.DataGeneration  {
     /**
      * Holds changed badges by value of trailheadapp__API_Name__c.
      */    
-    public Map<String, sObject> modifiedBadgesByAPIName {
+    public Map<String, trailheadapp__Badge__c> modifiedBadgesByAPIName {
         get {
             if(this.modifiedBadgesByAPIName == null) {
-                this.modifiedBadgesByAPIName = new Map<String, sObject>();
+                this.modifiedBadgesByAPIName = new Map<String, trailheadapp__Badge__c>();
                 for(sObject modifiedRecord : this.modifiedRecords) {
-                    this.modifiedBadgesByAPIName.put(String.valueOf(modifiedRecord.get('trailheadapp__API_Name__c')), modifiedRecord);
+                    this.modifiedBadgesByAPIName.put(String.valueOf(modifiedRecord.get('trailheadapp__API_Name__c')), (trailheadapp__Badge__c) modifiedRecord);
                 }
             }
             return this.modifiedBadgesByAPIName;

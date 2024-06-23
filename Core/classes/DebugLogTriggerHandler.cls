@@ -27,9 +27,10 @@ public without sharing class DebugLogTriggerHandler extends TriggerHandler {
      * @param newRecordsMap Map of IDs to newly inserted trailheadapp__Debug_Log__c records
      */    
     protected override void afterInsert(Map<Id, sObject> newRecordsMap) {
-        Integer numTrailheadEntityUpdateRecords = [SELECT COUNT() FROM TrailheadEntityUpdate__c];
+        Integer numTrailheadEntityUpdates = [SELECT COUNT() FROM TrailheadEntityUpdate__c];
+        Integer numTrailheadEntityDeletes = [SELECT COUNT() FROM TrailheadEntityDelete__c];
         for(sObject debugLog : newRecordsMap.values()) {
-            if((syncJobIsFinished(debugLog) == true) && (numTrailheadEntityUpdateRecords > 0) && (scheduledBatch == false)) {
+            if((syncJobIsFinished(debugLog) == true) && (numTrailheadEntityUpdates > 0) && (scheduledBatch == false)) {
                 System.scheduleBatch(new BatchTrailheadEntityUpdateSync(), 'BatchTrailheadEntityUpdateSync', 5, 200);
                 scheduledBatch = true;
             }

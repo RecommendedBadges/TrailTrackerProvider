@@ -43,23 +43,37 @@
             </summary>
             <ul>
               <!-- menu items -->
-              <li title="BadgeTriggerHandler" id="item-BadgeTriggerHandler" class="nav-item class " onclick="goToLocation('BadgeTriggerHandler.html');">
+              <li title="BadgeTriggerHandler" id="item-BadgeTriggerHandler" class="nav-item class public" onclick="goToLocation('BadgeTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">BadgeTriggerHandler</a>
               </li>
-              <li title="BatchTrailheadEntityUpdateSync" id="item-BatchTrailheadEntityUpdateSync" class="nav-item class " onclick="goToLocation('BatchTrailheadEntityUpdateSync.html');">
+              <li title="BatchTrailheadEntityUpdateSync" id="item-BatchTrailheadEntityUpdateSync" class="nav-item class public" onclick="goToLocation('BatchTrailheadEntityUpdateSync.html');">
                 <a tabindex="1" href="javascript:void(0)">BatchTrailheadEntityUpdateSync</a>
               </li>
-              <li title="DebugLogTriggerHandler" id="item-DebugLogTriggerHandler" class="nav-item class " onclick="goToLocation('DebugLogTriggerHandler.html');">
+              <li title="DebugLogTriggerHandler" id="item-DebugLogTriggerHandler" class="nav-item class public" onclick="goToLocation('DebugLogTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">DebugLogTriggerHandler</a>
               </li>
-              <li title="TrailTriggerHandler" id="item-TrailTriggerHandler" class="nav-item class " onclick="goToLocation('TrailTriggerHandler.html');">
+              <li title="TrailTriggerHandler" id="item-TrailTriggerHandler" class="nav-item class public" onclick="goToLocation('TrailTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">TrailTriggerHandler</a>
               </li>
-              <li title="TrailheadEntities" id="item-TrailheadEntities" class="nav-item class " onclick="goToLocation('TrailheadEntities.html');">
+              <li title="TrailheadEntities" id="item-TrailheadEntities" class="nav-item class public" onclick="goToLocation('TrailheadEntities.html');">
                 <a tabindex="1" href="javascript:void(0)">TrailheadEntities</a>
               </li>
-              <li title="TrailheadEntityUpdateEventTriggerHandler" id="item-TrailheadEntityUpdateEventTriggerHandler" class="nav-item class " onclick="goToLocation('TrailheadEntityUpdateEventTriggerHandler.html');">
-                <a tabindex="1" href="javascript:void(0)">TrailheadEntityUpdateEventTriggerHandler</a>
+              <li title="TrailheadEntityEventTriggerHandler" id="item-TrailheadEntityEventTriggerHandler" class="nav-item class public" onclick="goToLocation('TrailheadEntityEventTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">TrailheadEntityEventTriggerHandler</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Miscellaneous" class="group-name">
+            <summary id="header-Miscellaneous" class="nav-header">
+              <span>Miscellaneous</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="DMLUtils" id="item-DMLUtils" class="nav-item class public" onclick="goToLocation('DMLUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">DMLUtils</a>
+              </li>
+              <li title="CustomHttpCalloutMock" id="item-CustomHttpCalloutMock" class="nav-item class public" onclick="goToLocation('CustomHttpCalloutMock.html');">
+                <a tabindex="1" href="javascript:void(0)">CustomHttpCalloutMock</a>
               </li>
             </ul>
           </details>
@@ -104,7 +118,7 @@
               </div>
 
               <div class="class-signature">
-                public without sharing class BatchTrailheadEntityUpdateSync implements Database.Batchable&lt;sObject&gt;, Database.AllowsCallouts
+                public without sharing class BatchTrailheadEntityUpdateSync implements Database.Batchable&lt;sObject&gt;, Database.AllowsCallouts, Database.Stateful
               </div>
               <div class="class-subtitle">
                 Author
@@ -117,6 +131,31 @@
               </div>
               <div class="class-subtitle-description">
                 <li>06-01-2023</li>
+              </div>
+            </div>
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">BatchTrailheadEntityUpdateSync Constructors</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#BatchTrailheadEntityUpdateSync.BatchTrailheadEntityUpdateSync">
+                      BatchTrailheadEntityUpdateSync ()
+                    </a>
+
+                  </li>
+                </ul>
+                <div class="method public">
+                  <h4 class="method-title " id="BatchTrailheadEntityUpdateSync.BatchTrailheadEntityUpdateSync">
+                    <span>BatchTrailheadEntityUpdateSync()</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@SuppressWarnings('PMD.ApexDoc')</div>
+                  <div class="method-signature">
+                    public BatchTrailheadEntityUpdateSync()
+                  </div>
+                </div>
               </div>
             </div>
             <div class="subsection methods">
@@ -137,6 +176,9 @@
                       finish (bc)
                     </a>
 
+                    <div class="methods-toc__description">
+                      Logs number of successful Trailhead Entity updates.
+                    </div>
                   </li>
                   <li class="method public">
                     <a class="methods-toc__entry " href="#BatchTrailheadEntityUpdateSync.start">
@@ -178,6 +220,9 @@
                   <h4 class="method-title " id="BatchTrailheadEntityUpdateSync.finish">
                     <span>finish(bc)</span>
                   </h4>
+                  <div class="method-description">
+                    Logs number of successful Trailhead Entity updates.
+                  </div>
                   <div class="method-subtitle">
                     Signature
                   </div>

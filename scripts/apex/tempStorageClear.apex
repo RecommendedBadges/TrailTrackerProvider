@@ -1,6 +1,10 @@
-List<trailheadapp__User_Badge__c> userBadges = [SELECT Id FROM trailheadapp__User_Badge__c];
-List<trailheadapp__User_Trailmix__c> userTrailmixes = [SELECT Id FROM trailheadapp__User_Trailmix__c];
-delete userBadges;
-delete userTrailmixes;
-Database.emptyRecycleBin(userBadges);
-Database.emptyRecycleBin(userTrailmixes);
+List<trailheadapp__Badge__c> archivedBadges = [SELECT Id FROM trailheadapp__Badge__c WHERE trailheadapp__Archived__c = true];
+List<trailheadapp__Trail__c> archivedTrails = [SELECT Id FROM trailheadapp__Trail__c WHERE trailheadapp__Archived__c = true];
+delete archivedBadges;
+delete archivedTrails;
+Database.emptyRecycleBin(archivedBadges);
+Database.emptyRecycleBin(archivedTrails);
+
+List<trailheadapp__Trailmix__c> trailmixes = [SELECT Id FROM trailheadapp__Trailmix__c];
+delete trailmixes;
+Database.emptyRecycleBin(trailmixes);

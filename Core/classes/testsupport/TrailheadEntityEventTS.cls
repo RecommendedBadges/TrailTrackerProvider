@@ -1,28 +1,44 @@
 @isTest
-public class TrailheadEntityUpdateEventTS extends TestSupport.DataGeneration {
+public class TrailheadEntityEventTS extends TestSupport.DataGeneration {
     /**
      * Determines if UpdatedFields__c value is generated before each call to generate().
      */    
     public Boolean generateUpdatedFields {get; set;}
 
+    /**
+     * Holds Trailhead Entity Events by API name.
+     */
+    public Map<String, TrailheadEntityEvent__e> eventsByAPIName {
+        get {
+            if(this.eventsByAPIName == null) {
+                this.eventsByAPIName = new Map<String, TrailheadEntityEvent__e>();
+                for(sObject record : this.records) {
+                    this.eventsByAPIName.put(String.valueOf(record.get('APIName__c')), (TrailheadEntityEvent__e) record);
+                }
+            }
+            return this.eventsByAPIName;
+        }
+        set;
+    } 
+
     @SuppressWarnings('PMD.ApexDoc')
-    public TrailheadEntityUpdateEventTS(Map<String, Object> options) {
+    public TrailheadEntityEventTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());
     }
 
     @SuppressWarnings('PMD.ApexDoc')
-    public TrailheadEntityUpdateEventTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
+    public TrailheadEntityEventTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
-        this.S_OBJECT_TYPE = 'TrailheadEntityUpdateEvent__e';
+        this.S_OBJECT_TYPE = 'TrailheadEntityEvent__e';
         this.generateRecordIDs = false;
         this.generateUpdatedFields = options.containsKey('generateUpdatedFields') ? Boolean.valueOf(options.get('generateUpdatedFields')) : true;
     }
 
     protected override Map<Schema.SObjectField, TestSupport.TestDataField> loadDefaultSpecsByField() {
         return new Map<Schema.SObjectField, TestSupport.TestDataField> {
-            TrailheadEntityUpdateEvent__e.APIName__c => new CounterSuffixField(TrailheadEntityUpdateEvent__e.APIName__c, 'Test_Entity_'),
-            TrailheadEntityUpdateEvent__e.EntityType__c => new ControlledValueField(
-                TrailheadEntityUpdateEvent__e.EntityType__c,
+            TrailheadEntityEvent__e.APIName__c => new CounterSuffixField(TrailheadEntityEvent__e.APIName__c, 'Test_Entity_'),
+            TrailheadEntityEvent__e.EntityType__c => new ControlledValueField(
+                TrailheadEntityEvent__e.EntityType__c,
                 PicklistValueManager.getFieldValues(TrailheadEntityUpdate__c.getSObjectType(), TrailheadEntityUpdate__c.EntityType__c)
             )
         };
