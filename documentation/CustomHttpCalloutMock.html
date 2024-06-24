@@ -105,98 +105,84 @@
 
           <div class="section">
 
-            <h2 class="class-title top-level-type" id="TrailTriggerHandler">
-              <span>TrailTriggerHandler</span>
+            <h2 class="class-title top-level-type" id="CustomHttpCalloutMock">
+              <span>CustomHttpCalloutMock</span>
             </h2>
             <div class="class-container">
 
-              <div class="class-description">
-                Trigger handler for trailheadapp__Trail__c custom object
-              </div>
               <div class="class-subtitle">
                 Signature
               </div>
-
+              <div class="class-annotations">@isTest</div>
               <div class="class-signature">
-                public without sharing class TrailTriggerHandler extends TriggerHandler
-              </div>
-              <div class="class-subtitle">
-                Author
-              </div>
-              <div class="class-subtitle-description">
-                Ben Learn
-              </div>
-              <div class="class-subtitle">
-                Since
-              </div>
-              <div class="class-subtitle-description">
-                <li>06-02-2023</li>
+                public class CustomHttpCalloutMock implements HttpCalloutMock
               </div>
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">TrailTriggerHandler Constructors</h3>
+              <h3 class="subsection-title methods">CustomHttpCalloutMock Constructors</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method public">
-                    <a class="methods-toc__entry " href="#TrailTriggerHandler.TrailTriggerHandler">
-                      TrailTriggerHandler ()
+                    <a class="methods-toc__entry " href="#CustomHttpCalloutMock.CustomHttpCalloutMock">
+                      CustomHttpCalloutMock (response, responseStatusCode)
                     </a>
 
-                    <div class="methods-toc__description">
-                      Constructor for trigger handler
-                    </div>
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#CustomHttpCalloutMock.CustomHttpCalloutMock_1">
+                      CustomHttpCalloutMock (response, responseStatusCode, responseStatus)
+                    </a>
+
                   </li>
                 </ul>
                 <div class="method public">
-                  <h4 class="method-title " id="TrailTriggerHandler.TrailTriggerHandler">
-                    <span>TrailTriggerHandler()</span>
+                  <h4 class="method-title " id="CustomHttpCalloutMock.CustomHttpCalloutMock">
+                    <span>CustomHttpCalloutMock(response, responseStatusCode)</span>
                   </h4>
-                  <div class="method-description">
-                    Constructor for trigger handler
-                  </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
-
+                  <div class="method-annotations">@SuppressWarnings('PMD.ApexDoc')</div>
                   <div class="method-signature">
-                    public TrailTriggerHandler()
+                    public CustomHttpCalloutMock(String response, Integer responseStatusCode)
+                  </div>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="CustomHttpCalloutMock.CustomHttpCalloutMock_1">
+                    <span>CustomHttpCalloutMock(response, responseStatusCode, responseStatus)</span>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@SuppressWarnings('PMD.ApexDoc')</div>
+                  <div class="method-signature">
+                    public CustomHttpCalloutMock(String response, Integer responseStatusCode, String responseStatus)
                   </div>
                 </div>
               </div>
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">TrailTriggerHandler Methods</h3>
+              <h3 class="subsection-title methods">CustomHttpCalloutMock Methods</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
-                  <li class="method protected">
-                    <a class="methods-toc__entry " href="#TrailTriggerHandler.afterUpdate">
-                      afterUpdate (updatedRecordsMap, oldRecordsMap)
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#CustomHttpCalloutMock.respond">
+                      respond (req)
                     </a>
 
                   </li>
                 </ul>
-                <div class="method protected">
-                  <h4 class="method-title " id="TrailTriggerHandler.afterUpdate">
-                    <span>afterUpdate(updatedRecordsMap, oldRecordsMap)</span>
+                <div class="method public">
+                  <h4 class="method-title " id="CustomHttpCalloutMock.respond">
+                    <span>respond(req)</span>
                   </h4>
                   <div class="method-subtitle">
                     Signature
                   </div>
-
+                  <div class="method-annotations">@SuppressWarnings('PMD.ApexDoc')</div>
                   <div class="method-signature">
-                    protected override void afterUpdate(Map&lt;Id, sObject&gt; updatedRecordsMap, Map&lt;Id, sObject&gt; oldRecordsMap)
+                    public HttpResponse respond(HttpRequest req)
                   </div>
-                  <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">updatedRecordsMap</div>
-                  <div class="param-type">
-                    Type: <code class="code-inline">Map&lt;Id, sObject&gt;</code>
-                  </div>
-                  <div class="param-description">Map of IDs to updated trailheadapp__Trail__c records</div>
-                  <div class="param-name">oldRecordsMap</div>
-                  <div class="param-type">
-                    Type: <code class="code-inline">Map&lt;Id, sObject&gt;</code>
-                  </div>
-                  <div class="param-description">Map of IDs to old trailheadapp__Trail__c records</div>
                 </div>
               </div>
             </div>

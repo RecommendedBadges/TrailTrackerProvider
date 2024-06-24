@@ -5,6 +5,6 @@
     <testClassName>DebugLogTriggerHandler_Tests</testClassName>
     <testClassName>DMLUtils_Tests</testClassName>
     <testClassName>TrailheadEntities_Tests</testClassName>
-    <testClassName>TrailheadEntityUpdateEvtTgrHdlr_Tests</testClassName>
+    <testClassName>TrailheadEntityEventTriggerHandler_Tests</testClassName>
     <testClassName>TrailTriggerHandler_Tests</testClassName>
 </ApexTestSuite>

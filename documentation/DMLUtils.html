@@ -43,23 +43,37 @@
             </summary>
             <ul>
               <!-- menu items -->
-              <li title="BadgeTriggerHandler" id="item-BadgeTriggerHandler" class="nav-item class " onclick="goToLocation('BadgeTriggerHandler.html');">
+              <li title="BadgeTriggerHandler" id="item-BadgeTriggerHandler" class="nav-item class public" onclick="goToLocation('BadgeTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">BadgeTriggerHandler</a>
               </li>
-              <li title="BatchTrailheadEntityUpdateSync" id="item-BatchTrailheadEntityUpdateSync" class="nav-item class " onclick="goToLocation('BatchTrailheadEntityUpdateSync.html');">
+              <li title="BatchTrailheadEntityUpdateSync" id="item-BatchTrailheadEntityUpdateSync" class="nav-item class public" onclick="goToLocation('BatchTrailheadEntityUpdateSync.html');">
                 <a tabindex="1" href="javascript:void(0)">BatchTrailheadEntityUpdateSync</a>
               </li>
-              <li title="DebugLogTriggerHandler" id="item-DebugLogTriggerHandler" class="nav-item class " onclick="goToLocation('DebugLogTriggerHandler.html');">
+              <li title="DebugLogTriggerHandler" id="item-DebugLogTriggerHandler" class="nav-item class public" onclick="goToLocation('DebugLogTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">DebugLogTriggerHandler</a>
               </li>
-              <li title="TrailTriggerHandler" id="item-TrailTriggerHandler" class="nav-item class " onclick="goToLocation('TrailTriggerHandler.html');">
+              <li title="TrailTriggerHandler" id="item-TrailTriggerHandler" class="nav-item class public" onclick="goToLocation('TrailTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">TrailTriggerHandler</a>
               </li>
-              <li title="TrailheadEntities" id="item-TrailheadEntities" class="nav-item class " onclick="goToLocation('TrailheadEntities.html');">
+              <li title="TrailheadEntities" id="item-TrailheadEntities" class="nav-item class public" onclick="goToLocation('TrailheadEntities.html');">
                 <a tabindex="1" href="javascript:void(0)">TrailheadEntities</a>
               </li>
-              <li title="TrailheadEntityUpdateEventTriggerHandler" id="item-TrailheadEntityUpdateEventTriggerHandler" class="nav-item class " onclick="goToLocation('TrailheadEntityUpdateEventTriggerHandler.html');">
-                <a tabindex="1" href="javascript:void(0)">TrailheadEntityUpdateEventTriggerHandler</a>
+              <li title="TrailheadEntityEventTriggerHandler" id="item-TrailheadEntityEventTriggerHandler" class="nav-item class public" onclick="goToLocation('TrailheadEntityEventTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">TrailheadEntityEventTriggerHandler</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Miscellaneous" class="group-name">
+            <summary id="header-Miscellaneous" class="nav-header">
+              <span>Miscellaneous</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="DMLUtils" id="item-DMLUtils" class="nav-item class public" onclick="goToLocation('DMLUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">DMLUtils</a>
+              </li>
+              <li title="CustomHttpCalloutMock" id="item-CustomHttpCalloutMock" class="nav-item class public" onclick="goToLocation('CustomHttpCalloutMock.html');">
+                <a tabindex="1" href="javascript:void(0)">CustomHttpCalloutMock</a>
               </li>
             </ul>
           </details>
@@ -91,20 +105,20 @@
 
           <div class="section">
 
-            <h2 class="class-title top-level-type" id="TrailheadEntityUpdateEventTriggerHandler">
-              <span>TrailheadEntityUpdateEventTriggerHandler</span>
+            <h2 class="class-title top-level-type" id="DMLUtils">
+              <span>DMLUtils</span>
             </h2>
             <div class="class-container">
 
               <div class="class-description">
-                Trigger handler for the TrailheadEntityUpdateEvent__e platform event
+                Utility class for DML operations.
               </div>
               <div class="class-subtitle">
                 Signature
               </div>
 
               <div class="class-signature">
-                public without sharing class TrailheadEntityUpdateEventTriggerHandler extends TriggerHandler
+                public with sharing class DMLUtils
               </div>
               <div class="class-subtitle">
                 Author
@@ -116,68 +130,95 @@
                 Since
               </div>
               <div class="class-subtitle-description">
-                <li>06-02-2023</li>
+                <li>06-13-2024</li>
               </div>
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">TrailheadEntityUpdateEventTriggerHandler Constructors</h3>
+              <h3 class="subsection-title methods">DMLUtils Methods</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method public">
-                    <a class="methods-toc__entry " href="#TrailheadEntityUpdateEventTriggerHandler.TrailheadEntityUpdateEventTriggerHandler">
-                      TrailheadEntityUpdateEventTriggerHandler ()
+                    <a class="methods-toc__entry " href="#DMLUtils.logErrors">
+                      logErrors (saveResults, callingClassName)
                     </a>
 
                     <div class="methods-toc__description">
-                      Constructor for trigger handler
+                      Logs errors from insert calls by processing provided saveResults and using Nebula Logger.
+                    </div>
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#DMLUtils.logErrors_1">
+                      logErrors (saveResults, callingClassName, isUpdate)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Logs errors from insert and update calls by processing provided saveResults and using Nebula Logger.
                     </div>
                   </li>
                 </ul>
                 <div class="method public">
-                  <h4 class="method-title " id="TrailheadEntityUpdateEventTriggerHandler.TrailheadEntityUpdateEventTriggerHandler">
-                    <span>TrailheadEntityUpdateEventTriggerHandler()</span>
+                  <h4 class="method-title " id="DMLUtils.logErrors">
+                    <span>logErrors(saveResults, callingClassName)</span>
                   </h4>
                   <div class="method-description">
-                    Constructor for trigger handler
+                    Logs errors from insert calls by processing provided saveResults and using Nebula Logger.
                   </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    public TrailheadEntityUpdateEventTriggerHandler()
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="subsection methods">
-              <h3 class="subsection-title methods">TrailheadEntityUpdateEventTriggerHandler Methods</h3>
-              <div class="methods-container">
-                <ul class="methods-toc">
-                  <li class="method protected">
-                    <a class="methods-toc__entry " href="#TrailheadEntityUpdateEventTriggerHandler.afterInsert">
-                      afterInsert (newRecordsMap)
-                    </a>
-
-                  </li>
-                </ul>
-                <div class="method protected">
-                  <h4 class="method-title " id="TrailheadEntityUpdateEventTriggerHandler.afterInsert">
-                    <span>afterInsert(newRecordsMap)</span>
-                  </h4>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    protected override void afterInsert(Map&lt;Id, sObject&gt; newRecordsMap)
+                    public static Boolean logErrors(List&lt;Database.SaveResult&gt; saveResults, String callingClassName)
                   </div>
                   <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">newRecordsMap</div>
+                  <div class="param-name">saveResults</div>
                   <div class="param-type">
-                    Type: <code class="code-inline">Map&lt;Id, sObject&gt;</code>
+                    Type: <code class="code-inline">List&lt;Database.SaveResult&gt;</code>
                   </div>
-                  <div class="param-description">Map of IDs to newly inserted TrailheadEntityUpdateEvent__e events</div>
+                  <div class="param-name">callingClassName</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">String</code>
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    <code class="code-inline">Boolean</code> True if any records failed the DML operation.
+                  </div>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="DMLUtils.logErrors_1">
+                    <span>logErrors(saveResults, callingClassName, isUpdate)</span>
+                  </h4>
+                  <div class="method-description">
+                    Logs errors from insert and update calls by processing provided saveResults and using Nebula Logger.
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public static Boolean logErrors(List&lt;Database.SaveResult&gt; saveResults, String callingClassName, Boolean isUpdate)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">saveResults</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">List&lt;Database.SaveResult&gt;</code>
+                  </div>
+                  <div class="param-name">callingClassName</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">String</code>
+                  </div>
+                  <div class="param-name">isUpdate</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Boolean</code>
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    <code class="code-inline">Boolean</code> True if any records failed the DML operation.
+                  </div>
                 </div>
               </div>
             </div>

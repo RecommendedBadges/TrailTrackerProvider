@@ -3,11 +3,6 @@
     <description>Permission set for Administrator of Trail Tracker Provider app.</description>
     <fieldPermissions>
         <editable>true</editable>
-        <field>TrailheadEntityUpdate__c.Archived__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>TrailheadEntityUpdate__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -45,11 +40,20 @@
     <label>Trail Tracker Provider Permissions</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>TrailheadEntityDelete__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>TrailheadEntityUpdateEvent__e</object>
+        <object>TrailheadEntityEvent__e</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>

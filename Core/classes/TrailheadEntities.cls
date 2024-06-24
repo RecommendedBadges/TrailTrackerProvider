@@ -9,6 +9,8 @@ public inherited sharing class TrailheadEntities {
     private Map<Id, sObject> oldRecordsMap;
     private String entityType;
     private String namespacePrefix;
+    private static final String ARCHIVED_FIELD = 'trailheadapp__Archived__c';
+    private static final String API_NAME_FIELD = 'trailheadapp__API_Name__c';
     
     @TestVisible
     private static Map<String, List<String>> trackedFieldsByObject {
@@ -48,36 +50,49 @@ public inherited sharing class TrailheadEntities {
     }
 
     /**
-     * Creates TrailheadEntityUpdateEvent__e platform events for changes to tracked fields on Badges and Trails
-     * @return  `List<TrailheadEntityUpdateEvent__e>`
+     * Creates TrailheadEntityEvent__e platform events for changes to tracked fields on Badges and Trails
+     * @return  `List<TrailheadEntityEvent__e>`
      */    
-    public List<TrailheadEntityUpdateEvent__e> generateUpdateEvents() {
-        List<TrailheadEntityUpdateEvent__e> updateEvents = new List<TrailheadEntityUpdateEvent__e>();
+    public List<TrailheadEntityEvent__e> generateTrailheadEntityEvents() {
+        List<TrailheadEntityEvent__e> trailheadEntityEvents = new List<TrailheadEntityEvent__e>();
         for(sObject updatedRecord : updatedRecordsMap.values()) {
-            TrailheadEntityUpdateEvent__e updateEvent = new TrailheadEntityUpdateEvent__e();
-            Set<String> updatedFields = new Set<String>();
+            sObject oldRecord = oldRecordsMap.get(String.valueOf(updatedRecord.get('Id')));
 
-            for(String trackedField : trackedFieldsByObject.get(this.entityType)) {
-                sObject oldRecord = oldRecordsMap.get(String.valueOf(updatedRecord.get('Id')));
-                String updateEventFieldName = trackedField.removeStart(this.namespacePrefix);
-                // if the field is a standard field, it doesn't have the __c suffix, but the corresponding platform event field is a custom field, so it will have the __c suffix
-                if(trackedField.indexOf('__c') == -1) {
-                    updateEventFieldName += '__c';
+            // skip current iteration if old and new record both have Archived set to true
+            if((updatedRecord.get(ARCHIVED_FIELD) == true) && (oldRecord.get(ARCHIVED_FIELD) == true)) {
+                continue;
+            } else if(updatedRecord.get(ARCHIVED_FIELD) == true) {
+                TrailheadEntityEvent__e deleteEvent = new TrailheadEntityEvent__e(
+                    APIName__c = String.valueOf(updatedRecord.get(API_NAME_FIELD)),
+                    EntityType__c = this.entityType,
+                    Operation__c = 'delete'
+                );
+                trailheadEntityEvents.add(deleteEvent);
+            } else {
+                TrailheadEntityEvent__e updateEvent = new TrailheadEntityEvent__e();
+                Set<String> updatedFields = new Set<String>();
+                for(String trackedField : trackedFieldsByObject.get(this.entityType)) {
+                    String updateEventFieldName = trackedField.removeStart(this.namespacePrefix);
+                    // if the field is a standard field, it doesn't have the __c suffix, but the corresponding platform event field is a custom field, so it will have the __c suffix
+                    if(trackedField.indexOf('__c') == -1) {
+                        updateEventFieldName += '__c';
+                    }
+                    populateFieldIfTrackedAndChanged(updatedRecord, oldRecord, trackedField, updateEventFieldName, updateEvent, updatedFields);
                 }
-                populateFieldIfTrackedAndChanged(updatedRecord, oldRecord, trackedField, updateEventFieldName, updateEvent, updatedFields);
-            }
 
-            if(updateEvent.getPopulatedFieldsAsMap().isEmpty() == false) {
-                updateEvent.APIName__c = String.valueOf(updatedRecord.get('trailheadapp__API_Name__c'));
-                updateEvent.EntityType__c = this.entityType;
-                updateEvent.UpdatedFields__c = String.join(new List<String>(updatedFields), ';');
-                updateEvents.add(updateEvent);
+                if(updateEvent.getPopulatedFieldsAsMap().isEmpty() == false) {
+                    updateEvent.APIName__c = String.valueOf(updatedRecord.get(API_NAME_FIELD));
+                    updateEvent.EntityType__c = this.entityType;
+                    updateEvent.Operation__c = 'update';
+                    updateEvent.UpdatedFields__c = String.join(new List<String>(updatedFields), ';');
+                    trailheadEntityEvents.add(updateEvent);
+                }
             }
         }
-        return updateEvents;
+        return trailheadEntityEvents;
     }
 
-    private static void populateFieldIfTrackedAndChanged(sObject updatedRecord, sObject oldRecord, String fieldName, String updateEventFieldName, TrailheadEntityUpdateEvent__e updateEvent, Set<String> updatedFields) { 
+    private static void populateFieldIfTrackedAndChanged(sObject updatedRecord, sObject oldRecord, String fieldName, String updateEventFieldName, TrailheadEntityEvent__e updateEvent, Set<String> updatedFields) { 
         if(updatedRecord.get(fieldName) != oldRecord.get(fieldName)) {
             updateEvent.put(updateEventFieldName, String.valueOf(updatedRecord.get(fieldName)));
             updatedFields.add(updateEventFieldName);

@@ -19,7 +19,7 @@ public without sharing class TrailTriggerHandler  extends TriggerHandler {
      */
     protected override void afterUpdate(Map<Id, sObject> updatedRecordsMap, Map<Id, sObject> oldRecordsMap) {
         List<Database.SaveResult> publishResults = EventBus.publish(
-            new TrailheadEntities(updatedRecordsMap, oldRecordsMap, Schema.SObjectType.trailheadapp__Trail__c.getName()).generateUpdateEvents()
+            new TrailheadEntities(updatedRecordsMap, oldRecordsMap, Schema.SObjectType.trailheadapp__Trail__c.getName()).generateTrailheadEntityEvents()
         );
         DMLUtils.logErrors(publishResults, 'TrailTriggerHandler');
     }

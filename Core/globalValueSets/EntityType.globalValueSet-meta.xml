@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>trailheadapp__Badge__c</fullName>
+        <default>false</default>
+        <label>trailheadapp__Badge__c</label>
+    </customValue>
+    <customValue>
+        <fullName>trailheadapp__Trail__c</fullName>
+        <default>false</default>
+        <label>trailheadapp__Trail__c</label>
+    </customValue>
+    <description>Type of Trailhead entity (trailheadapp__Badge__c or trailheadapp__Trail__c) that record corresponds to.</description>
+    <masterLabel>Entity Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

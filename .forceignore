@@ -8,7 +8,11 @@
 # LWC Jest
 **/__tests__/**
 
-admin.profile
+**Admin.profile**
+**B2B Reordering Portal Buyer Profile.profile**
+**externalCredentials**
+**certs**
+**namedCredentials**
 
 # temp ignored
 #Core
