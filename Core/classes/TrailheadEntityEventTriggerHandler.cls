@@ -1,7 +1,7 @@
 /**
  * Trigger handler for the TrailheadEntityEvent__e platform event
  * @author Ben Learn
- * @since 06-02-2023
+ * @since 06-02-2024
  * @group Core
  */
 public without sharing class TrailheadEntityEventTriggerHandler extends TriggerHandler {
@@ -24,7 +24,8 @@ public without sharing class TrailheadEntityEventTriggerHandler extends TriggerH
 
 
     /**
-     * 
+     * After insert logic
+     * Creates a TrailheadEntityUpdate__c record for each TrailheadEntityEvent__e platform event
      * @param newRecordsMap Map of IDs to newly inserted TrailheadEntityEvent__e events
      */
     protected override void afterInsert(Map<Id, sObject> newRecordsMap) {

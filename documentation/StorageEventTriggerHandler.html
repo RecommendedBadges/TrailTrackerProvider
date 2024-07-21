@@ -111,20 +111,20 @@
 
           <div class="section">
 
-            <h2 class="class-title top-level-type" id="BadgeTriggerHandler">
-              <span>BadgeTriggerHandler</span>
+            <h2 class="class-title top-level-type" id="StorageEventTriggerHandler">
+              <span>StorageEventTriggerHandler</span>
             </h2>
             <div class="class-container">
 
               <div class="class-description">
-                Trigger handler for trailheadapp__Badge__c custom object
+                Trigger handler for the StorageEvent__e platform event
               </div>
               <div class="class-subtitle">
                 Signature
               </div>
 
               <div class="class-signature">
-                public without sharing class BadgeTriggerHandler extends TriggerHandler
+                public without sharing class StorageEventTriggerHandler extends TriggerHandler
               </div>
               <div class="class-subtitle">
                 Author
@@ -136,16 +136,16 @@
                 Since
               </div>
               <div class="class-subtitle-description">
-                <li>06-01-2023</li>
+                <li>07-17-2024</li>
               </div>
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">BadgeTriggerHandler Constructors</h3>
+              <h3 class="subsection-title methods">StorageEventTriggerHandler Constructors</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method public">
-                    <a class="methods-toc__entry " href="#BadgeTriggerHandler.BadgeTriggerHandler">
-                      BadgeTriggerHandler ()
+                    <a class="methods-toc__entry " href="#StorageEventTriggerHandler.StorageEventTriggerHandler">
+                      StorageEventTriggerHandler ()
                     </a>
 
                     <div class="methods-toc__description">
@@ -154,8 +154,8 @@
                   </li>
                 </ul>
                 <div class="method public">
-                  <h4 class="method-title " id="BadgeTriggerHandler.BadgeTriggerHandler">
-                    <span>BadgeTriggerHandler()</span>
+                  <h4 class="method-title " id="StorageEventTriggerHandler.StorageEventTriggerHandler">
+                    <span>StorageEventTriggerHandler()</span>
                   </h4>
                   <div class="method-description">
                     Constructor for trigger handler
@@ -165,44 +165,45 @@
                   </div>
 
                   <div class="method-signature">
-                    public BadgeTriggerHandler()
+                    public StorageEventTriggerHandler()
                   </div>
                 </div>
               </div>
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">BadgeTriggerHandler Methods</h3>
+              <h3 class="subsection-title methods">StorageEventTriggerHandler Methods</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method protected">
-                    <a class="methods-toc__entry " href="#BadgeTriggerHandler.afterUpdate">
-                      afterUpdate (updatedRecordsMap, oldRecordsMap)
+                    <a class="methods-toc__entry " href="#StorageEventTriggerHandler.afterInsert">
+                      afterInsert (newRecordsMap)
                     </a>
 
+                    <div class="methods-toc__description">
+                      After insert logic
+                    </div>
                   </li>
                 </ul>
                 <div class="method protected">
-                  <h4 class="method-title " id="BadgeTriggerHandler.afterUpdate">
-                    <span>afterUpdate(updatedRecordsMap, oldRecordsMap)</span>
+                  <h4 class="method-title " id="StorageEventTriggerHandler.afterInsert">
+                    <span>afterInsert(newRecordsMap)</span>
                   </h4>
+                  <div class="method-description">
+                    After insert logic
+                  </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
 
                   <div class="method-signature">
-                    protected override void afterUpdate(Map&lt;Id, sObject&gt; updatedRecordsMap, Map&lt;Id, sObject&gt; oldRecordsMap)
+                    protected override void afterInsert(Map&lt;Id, sObject&gt; newRecordsMap)
                   </div>
                   <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">updatedRecordsMap</div>
+                  <div class="param-name">newRecordsMap</div>
                   <div class="param-type">
                     Type: <code class="code-inline">Map&lt;Id, sObject&gt;</code>
                   </div>
-                  <div class="param-description">Map of IDs to updated trailheadapp__Badge__c records</div>
-                  <div class="param-name">oldRecordsMap</div>
-                  <div class="param-type">
-                    Type: <code class="code-inline">Map&lt;Id, sObject&gt;</code>
-                  </div>
-                  <div class="param-description">Map of IDs to old trailheadapp__Badge__c records</div>
+                  <div class="param-description">Map of IDs to newly inserted StorageEvent__e events</div>
                 </div>
               </div>
             </div>
