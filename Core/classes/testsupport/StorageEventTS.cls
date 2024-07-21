@@ -1,10 +1,10 @@
 @isTest
-public class TrailheadEntityDeleteTS extends TestSupport.DataGeneration {
+public class StorageEventTS extends TestSupport.DataGeneration {
     /**
      * Default constructor
      * @param options DataGeneration options
      */
-    public TrailheadEntityDeleteTS(Map<String, Object> options) {
+    public StorageEventTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());
     }
 
@@ -13,15 +13,15 @@ public class TrailheadEntityDeleteTS extends TestSupport.DataGeneration {
      * @param options DataGeneration options
      * @param fieldSpecs Custom field specs
      */    
-    public TrailheadEntityDeleteTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
+    public StorageEventTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
-        this.S_OBJECT_TYPE = 'TrailheadEntityDelete__c';
+        this.S_OBJECT_TYPE = 'StorageEvent__e';
+        this.generateRecordIDs = false;
     }
 
     protected override Map<Schema.SObjectField, TestSupport.TestDataField> loadDefaultSpecsByField() {
         return new Map<Schema.SObjectField, TestSupport.TestDataField> {
-            TrailheadEntityDelete__c.APIName__c => new CounterSuffixField(TrailheadEntityDelete__c.APIName__c, 'Test_Delete_'),
-            TrailheadEntityDelete__c.EntityType__c => new RandomPicklistValueField(TrailheadEntityDelete__c.EntityType__c)
+            StorageEvent__e.Action__c => new TestSupport.TestDataField(StorageEvent__e.Action__c, 'delete')
         };
     }
 }

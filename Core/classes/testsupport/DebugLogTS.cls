@@ -1,11 +1,18 @@
 @isTest
 public class DebugLogTS extends TestSupport.DataGeneration  {
-    @SuppressWarnings('PMD.ApexDoc')
+    /**
+     * Default constructor
+     * @param options DataGeneration options
+     */
     public DebugLogTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());
     }
 
-    @SuppressWarnings('PMD.ApexDoc')
+    /**
+     * Overridden constructor with custom field specs
+     * @param options DataGeneration options
+     * @param fieldSpecs Custom field specs
+     */    
     public DebugLogTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
         this.S_OBJECT_TYPE = 'trailheadapp__Debug_Log__c';

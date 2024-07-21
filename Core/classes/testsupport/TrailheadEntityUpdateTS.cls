@@ -5,12 +5,19 @@ public class TrailheadEntityUpdateTS extends TestSupport.DataGeneration {
     */    
     public Boolean generateUpdatedFields {get; set;}
 
-    @SuppressWarnings('PMD.ApexDoc')
+    /**
+     * Default constructor
+     * @param options DataGeneration options
+     */
     public TrailheadEntityUpdateTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());
     }
 
-    @SuppressWarnings('PMD.ApexDoc')
+    /**
+     * Overridden constructor with custom field specs
+     * @param options DataGeneration options
+     * @param fieldSpecs Custom field specs
+     */   
     public TrailheadEntityUpdateTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
         this.generateUpdatedFields = options.containsKey('generateUpdatedFields') ? Boolean.valueOf(options.get('generateUpdatedFields')) : true;

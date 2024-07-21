@@ -40,4 +40,48 @@ public with sharing class DMLUtils {
         }
         return hasErrors;
     }
+
+    /**
+     * Logs errors from delete calls by processing provided deleteResults and using Nebula Logger.
+     * @param deleteResults 
+     * @param callingClassName 
+     * @return  `Boolean`
+     */    
+    public static Boolean logErrors(List<Database.DeleteResult> deleteResults, String callingClassName) {
+        Boolean hasErrors = false;
+        for(Database.DeleteResult dr : deleteResults) {
+            if(dr.isSuccess() == false) {
+                hasErrors = true;
+                Logger.error(new LogMessage('{0}', dr.getErrors()), dr.getId());
+            }
+        }
+
+        if(hasErrors) {
+            Logger.info(new LogMessage('DML originated from {0}.', callingClassName));
+            Logger.saveLog();
+        }
+        return hasErrors;
+    }
+
+    /**
+     * Logs errors from hard delete calls by processing provided emptyRecycleBinResults and using Nebula Logger.
+     * @param emptyRecycleBinResults 
+     * @param callingClassName 
+     * @return  `Boolean`
+     */    
+    public static Boolean logErrors(List<Database.EmptyRecycleBinResult> emptyRecycleBinResults, String callingClassName) {
+        Boolean hasErrors = false;
+        for(Database.EmptyRecycleBinResult erbr : emptyRecycleBinResults) {
+            if(erbr.isSuccess() == false) {
+                hasErrors = true;
+                Logger.error(new LogMessage('{0}', erbr.getErrors()), erbr.getId());
+            }
+        }
+
+        if(hasErrors) {
+            Logger.info(new LogMessage('DML originated from {0}.', callingClassName));
+            Logger.saveLog();
+        }
+        return hasErrors;
+    }
 }
