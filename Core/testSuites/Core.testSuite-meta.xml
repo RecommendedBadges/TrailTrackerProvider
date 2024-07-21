@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApexTestSuite xmlns="http://soap.sforce.com/2006/04/metadata">
     <testClassName>BadgeTriggerHandler_Tests</testClassName>
+    <testClassName>BatchTrailheadEntityDeleteSync_Tests</testClassName>
     <testClassName>BatchTrailheadEntityUpdateSync_Tests</testClassName>
     <testClassName>DebugLogTriggerHandler_Tests</testClassName>
     <testClassName>DMLUtils_Tests</testClassName>
+    <testClassName>StorageEventTriggerHandler_Tests</testClassName>
     <testClassName>TrailheadEntities_Tests</testClassName>
     <testClassName>TrailheadEntityEventTriggerHandler_Tests</testClassName>
     <testClassName>TrailTriggerHandler_Tests</testClassName>
