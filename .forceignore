@@ -14,6 +14,11 @@
 **certs**
 **namedCredentials**
 **AppSwitcher.appMenu**
+**LightningService_UtilityBar**
+**LightningSalesConsole_UtilityBar**
+**sfdcInternalInt__sfdc_scrt2**
+**Salesforce1**
+**storageLimits**
 
 # temp ignored
 #Core

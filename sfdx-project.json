@@ -8,6 +8,9 @@
           "package": "NebulaLogger"
         },
         {
+          "package": "StorageLimits"
+        },
+        {
           "package": "TrailTracker"
         },
         {
@@ -20,7 +23,7 @@
       ],
       "package": "Core",
       "versionName": "Brooklyn",
-      "versionNumber": "1.6.0.NEXT",
+      "versionNumber": "1.8.0.NEXT",
       "versionDescription": "Core package for Trail Tracker Provider app. Contains objects, triggers, and other base functionality."
     },
     {
@@ -39,6 +42,7 @@
   "packageAliases": {
     "Core": "0Ho8b000000oLqTCAU",
     "NebulaLogger": "04t5Y0000027L98QAE",
+    "StorageLimits": "04t8c000000vGr4AAE",
     "TestSupport": "04t8c000000vGhnAAE",
     "TrailTracker": "04t1Q000001ACOnQAO",
     "TriggerHandler": "0Ho8b000000oLqYCAU",
@@ -50,6 +54,8 @@
     "Core@1.3.0-1": "04t8b000000jttUAAQ",
     "Core@1.4.0-1": "04t8b000000jtuIAAQ",
     "Core@1.5.0-1": "04t8b000000jtuNAAQ",
-    "Core@1.6.0-1": "04t8b000000jtxWAAQ"
+    "Core@1.6.0-1": "04t8b000000jtxWAAQ",
+    "Core@1.7.0-1": "04t8b000000ju2XAAQ",
+    "Core@1.8.0-1": "04t8b000000ju2cAAA"
   }
 }
