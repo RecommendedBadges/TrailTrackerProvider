@@ -17,8 +17,15 @@ public class TrailTS extends TestSupport.DataGeneration  {
     }
 
     /**
-     * Default constructor
-     * @param options DataGeneration options
+     * No arg constructor
+     */       
+    public TrailTS() {
+        this(new Map<String, Object>(), new List<TestSupport.TestDataField>());
+    }
+
+    /**
+     * Constructor with configuration options
+     * @param options 
      */
     public TrailTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());

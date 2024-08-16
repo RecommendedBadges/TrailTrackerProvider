@@ -6,8 +6,15 @@ public class TrailheadEntityUpdateTS extends TestSupport.DataGeneration {
     public Boolean generateUpdatedFields {get; set;}
 
     /**
-     * Default constructor
-     * @param options DataGeneration options
+     * No arg constructor
+     */       
+    public TrailheadEntityUpdateTS() {
+        this(new Map<String, Object>(), new List<TestSupport.TestDataField>());
+    }
+
+    /**
+     * Constructor with configuration options
+     * @param options 
      */
     public TrailheadEntityUpdateTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());

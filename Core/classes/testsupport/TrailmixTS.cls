@@ -1,8 +1,15 @@
 @isTest
 public class TrailmixTS extends TestSupport.DataGeneration {
     /**
-     * Default constructor
-     * @param options DataGeneration options
+     * No arg constructor
+     */       
+    public TrailmixTS() {
+        this(new Map<String, Object>(), new List<TestSupport.TestDataField>());
+    }
+
+    /**
+     * Constructor with configuration options
+     * @param options 
      */
     public TrailmixTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());

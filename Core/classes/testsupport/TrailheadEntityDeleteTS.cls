@@ -1,8 +1,15 @@
 @isTest
 public class TrailheadEntityDeleteTS extends TestSupport.DataGeneration {
     /**
-     * Default constructor
-     * @param options DataGeneration options
+     * No arg constructor
+     */       
+    public TrailheadEntityDeleteTS() {
+        this(new Map<String, Object>(), new List<TestSupport.TestDataField>());
+    }
+
+    /**
+     * Constructor with configuration options
+     * @param options 
      */
     public TrailheadEntityDeleteTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());
