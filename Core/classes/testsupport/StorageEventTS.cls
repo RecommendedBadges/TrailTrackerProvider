@@ -1,8 +1,15 @@
 @isTest
 public class StorageEventTS extends TestSupport.DataGeneration {
     /**
-     * Default constructor
-     * @param options DataGeneration options
+     * No arg constructor
+     */       
+    public StorageEventTS() {
+        this(new Map<String, Object>(), new List<TestSupport.TestDataField>());
+    }
+
+    /**
+     * Constructor with configuration options
+     * @param options 
      */
     public StorageEventTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());
@@ -15,7 +22,7 @@ public class StorageEventTS extends TestSupport.DataGeneration {
      */    
     public StorageEventTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
-        this.S_OBJECT_TYPE = 'StorageEvent__e';
+        this.SOBJECT_TYPE = 'StorageEvent__e';
         this.generateRecordIDs = false;
     }
 

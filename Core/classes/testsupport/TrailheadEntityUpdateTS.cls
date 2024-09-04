@@ -6,8 +6,15 @@ public class TrailheadEntityUpdateTS extends TestSupport.DataGeneration {
     public Boolean generateUpdatedFields {get; set;}
 
     /**
-     * Default constructor
-     * @param options DataGeneration options
+     * No arg constructor
+     */       
+    public TrailheadEntityUpdateTS() {
+        this(new Map<String, Object>(), new List<TestSupport.TestDataField>());
+    }
+
+    /**
+     * Constructor with configuration options
+     * @param options 
      */
     public TrailheadEntityUpdateTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());
@@ -21,7 +28,7 @@ public class TrailheadEntityUpdateTS extends TestSupport.DataGeneration {
     public TrailheadEntityUpdateTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
         this.generateUpdatedFields = options.containsKey('generateUpdatedFields') ? Boolean.valueOf(options.get('generateUpdatedFields')) : true;
-        this.S_OBJECT_TYPE = 'TrailheadEntityUpdate__c';
+        this.SOBJECT_TYPE = 'TrailheadEntityUpdate__c';
     }
 
     protected override Map<Schema.SObjectField, TestSupport.TestDataField> loadDefaultSpecsByField() {

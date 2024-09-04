@@ -23,7 +23,7 @@
       ],
       "package": "Core",
       "versionName": "Brooklyn",
-      "versionNumber": "1.8.0.NEXT",
+      "versionNumber": "1.9.0.NEXT",
       "versionDescription": "Core package for Trail Tracker Provider app. Contains objects, triggers, and other base functionality."
     },
     {
@@ -43,7 +43,7 @@
     "Core": "0Ho8b000000oLqTCAU",
     "NebulaLogger": "04t5Y0000027L98QAE",
     "StorageLimits": "04t8c000000vGr4AAE",
-    "TestSupport": "04t8c000000vGhnAAE",
+    "TestSupport": "04t8c000000vH2MAAU",
     "TrailTracker": "04t1Q000001ACOnQAO",
     "TriggerHandler": "0Ho8b000000oLqYCAU",
     "Core@0.1.0-1": "04t8b000001FAfZAAW",
@@ -56,6 +56,7 @@
     "Core@1.5.0-1": "04t8b000000jtuNAAQ",
     "Core@1.6.0-1": "04t8b000000jtxWAAQ",
     "Core@1.7.0-1": "04t8b000000ju2XAAQ",
-    "Core@1.8.0-1": "04t8b000000ju2cAAA"
+    "Core@1.8.0-1": "04t8b000000ju2cAAA",
+    "Core@1.9.0-1": "04t8b000000ju4JAAQ"
   }
 }

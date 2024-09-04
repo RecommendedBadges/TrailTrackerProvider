@@ -1,8 +1,15 @@
 @isTest
 public class DebugLogTS extends TestSupport.DataGeneration  {
     /**
-     * Default constructor
-     * @param options DataGeneration options
+     * No arg constructor
+     */       
+    public DebugLogTS() {
+        this(new Map<String, Object>(), new List<TestSupport.TestDataField>());
+    }
+
+    /**
+     * Constructor with configuration options
+     * @param options 
      */
     public DebugLogTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());
@@ -15,7 +22,7 @@ public class DebugLogTS extends TestSupport.DataGeneration  {
      */    
     public DebugLogTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
-        this.S_OBJECT_TYPE = 'trailheadapp__Debug_Log__c';
+        this.SOBJECT_TYPE = 'trailheadapp__Debug_Log__c';
     }
 
     protected override Map<Schema.SObjectField, TestSupport.TestDataField> loadDefaultSpecsByField() {

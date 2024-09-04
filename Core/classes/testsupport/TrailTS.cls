@@ -17,8 +17,15 @@ public class TrailTS extends TestSupport.DataGeneration  {
     }
 
     /**
-     * Default constructor
-     * @param options DataGeneration options
+     * No arg constructor
+     */       
+    public TrailTS() {
+        this(new Map<String, Object>(), new List<TestSupport.TestDataField>());
+    }
+
+    /**
+     * Constructor with configuration options
+     * @param options 
      */
     public TrailTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());
@@ -31,7 +38,7 @@ public class TrailTS extends TestSupport.DataGeneration  {
      */    
     public TrailTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
-        this.S_OBJECT_TYPE = 'trailheadapp__Trail__c';
+        this.SOBJECT_TYPE = 'trailheadapp__Trail__c';
     }
 
     protected override Map<Schema.SObjectField, TestSupport.TestDataField> loadDefaultSpecsByField() {

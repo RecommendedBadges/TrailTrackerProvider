@@ -22,8 +22,15 @@ public class TrailheadEntityEventTS extends TestSupport.DataGeneration {
     } 
 
     /**
-     * Default constructor
-     * @param options DataGeneration options
+     * No arg constructor
+     */       
+    public TrailheadEntityEventTS() {
+        this(new Map<String, Object>(), new List<TestSupport.TestDataField>());
+    }
+
+    /**
+     * Constructor with configuration options
+     * @param options 
      */
     public TrailheadEntityEventTS(Map<String, Object> options) {
         this(options, new List<TestSupport.TestDataField>());
@@ -36,7 +43,7 @@ public class TrailheadEntityEventTS extends TestSupport.DataGeneration {
      */
     public TrailheadEntityEventTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
-        this.S_OBJECT_TYPE = 'TrailheadEntityEvent__e';
+        this.SOBJECT_TYPE = 'TrailheadEntityEvent__e';
         this.generateRecordIDs = false;
         this.generateUpdatedFields = options.containsKey('generateUpdatedFields') ? Boolean.valueOf(options.get('generateUpdatedFields')) : true;
     }
