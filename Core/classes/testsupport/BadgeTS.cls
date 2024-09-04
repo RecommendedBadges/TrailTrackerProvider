@@ -38,7 +38,7 @@ public class BadgeTS extends TestSupport.DataGeneration  {
      */   
     public BadgeTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
-        this.S_OBJECT_TYPE = 'trailheadapp__Badge__c';
+        this.SOBJECT_TYPE = 'trailheadapp__Badge__c';
     }
 
     protected override Map<Schema.SObjectField, TestSupport.TestDataField> loadDefaultSpecsByField() {

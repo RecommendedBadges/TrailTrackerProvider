@@ -22,7 +22,7 @@ public class StorageEventTS extends TestSupport.DataGeneration {
      */    
     public StorageEventTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
-        this.S_OBJECT_TYPE = 'StorageEvent__e';
+        this.SOBJECT_TYPE = 'StorageEvent__e';
         this.generateRecordIDs = false;
     }
 

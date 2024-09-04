@@ -22,7 +22,7 @@ public class TrailmixTS extends TestSupport.DataGeneration {
      */    
     public TrailmixTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
-        this.S_OBJECT_TYPE = 'trailheadapp__Trailmix__c';
+        this.SOBJECT_TYPE = 'trailheadapp__Trailmix__c';
     }
 
     protected override Map<Schema.SObjectField, TestSupport.TestDataField> loadDefaultSpecsByField() {

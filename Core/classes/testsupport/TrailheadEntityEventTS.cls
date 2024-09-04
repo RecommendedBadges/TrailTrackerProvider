@@ -43,7 +43,7 @@ public class TrailheadEntityEventTS extends TestSupport.DataGeneration {
      */
     public TrailheadEntityEventTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
-        this.S_OBJECT_TYPE = 'TrailheadEntityEvent__e';
+        this.SOBJECT_TYPE = 'TrailheadEntityEvent__e';
         this.generateRecordIDs = false;
         this.generateUpdatedFields = options.containsKey('generateUpdatedFields') ? Boolean.valueOf(options.get('generateUpdatedFields')) : true;
     }

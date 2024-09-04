@@ -28,7 +28,7 @@ public class TrailheadEntityUpdateTS extends TestSupport.DataGeneration {
     public TrailheadEntityUpdateTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
         this.generateUpdatedFields = options.containsKey('generateUpdatedFields') ? Boolean.valueOf(options.get('generateUpdatedFields')) : true;
-        this.S_OBJECT_TYPE = 'TrailheadEntityUpdate__c';
+        this.SOBJECT_TYPE = 'TrailheadEntityUpdate__c';
     }
 
     protected override Map<Schema.SObjectField, TestSupport.TestDataField> loadDefaultSpecsByField() {

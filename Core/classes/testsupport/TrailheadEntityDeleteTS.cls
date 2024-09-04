@@ -22,7 +22,7 @@ public class TrailheadEntityDeleteTS extends TestSupport.DataGeneration {
      */    
     public TrailheadEntityDeleteTS(Map<String, Object> options, List<TestSupport.TestDataField> fieldSpecs) {
         super(options, fieldSpecs);
-        this.S_OBJECT_TYPE = 'TrailheadEntityDelete__c';
+        this.SOBJECT_TYPE = 'TrailheadEntityDelete__c';
     }
 
     protected override Map<Schema.SObjectField, TestSupport.TestDataField> loadDefaultSpecsByField() {
