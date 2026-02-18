@@ -43,28 +43,28 @@
             </summary>
             <ul>
               <!-- menu items -->
-              <li title="BadgeTriggerHandler" id="item-BadgeTriggerHandler" class="nav-item class " onclick="goToLocation('BadgeTriggerHandler.html');">
+              <li title="BadgeTriggerHandler" id="item-BadgeTriggerHandler" class="nav-item class public" onclick="goToLocation('BadgeTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">BadgeTriggerHandler</a>
               </li>
-              <li title="BatchTrailheadEntityDeleteSync" id="item-BatchTrailheadEntityDeleteSync" class="nav-item class " onclick="goToLocation('BatchTrailheadEntityDeleteSync.html');">
+              <li title="BatchTrailheadEntityDeleteSync" id="item-BatchTrailheadEntityDeleteSync" class="nav-item class public" onclick="goToLocation('BatchTrailheadEntityDeleteSync.html');">
                 <a tabindex="1" href="javascript:void(0)">BatchTrailheadEntityDeleteSync</a>
               </li>
-              <li title="BatchTrailheadEntityUpdateSync" id="item-BatchTrailheadEntityUpdateSync" class="nav-item class " onclick="goToLocation('BatchTrailheadEntityUpdateSync.html');">
+              <li title="BatchTrailheadEntityUpdateSync" id="item-BatchTrailheadEntityUpdateSync" class="nav-item class public" onclick="goToLocation('BatchTrailheadEntityUpdateSync.html');">
                 <a tabindex="1" href="javascript:void(0)">BatchTrailheadEntityUpdateSync</a>
               </li>
-              <li title="DebugLogTriggerHandler" id="item-DebugLogTriggerHandler" class="nav-item class " onclick="goToLocation('DebugLogTriggerHandler.html');">
+              <li title="DebugLogTriggerHandler" id="item-DebugLogTriggerHandler" class="nav-item class public" onclick="goToLocation('DebugLogTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">DebugLogTriggerHandler</a>
               </li>
-              <li title="StorageEventTriggerHandler" id="item-StorageEventTriggerHandler" class="nav-item class " onclick="goToLocation('StorageEventTriggerHandler.html');">
+              <li title="StorageEventTriggerHandler" id="item-StorageEventTriggerHandler" class="nav-item class public" onclick="goToLocation('StorageEventTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">StorageEventTriggerHandler</a>
               </li>
-              <li title="TrailTriggerHandler" id="item-TrailTriggerHandler" class="nav-item class " onclick="goToLocation('TrailTriggerHandler.html');">
+              <li title="TrailTriggerHandler" id="item-TrailTriggerHandler" class="nav-item class public" onclick="goToLocation('TrailTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">TrailTriggerHandler</a>
               </li>
-              <li title="TrailheadEntities" id="item-TrailheadEntities" class="nav-item class " onclick="goToLocation('TrailheadEntities.html');">
+              <li title="TrailheadEntities" id="item-TrailheadEntities" class="nav-item class public" onclick="goToLocation('TrailheadEntities.html');">
                 <a tabindex="1" href="javascript:void(0)">TrailheadEntities</a>
               </li>
-              <li title="TrailheadEntityEventTriggerHandler" id="item-TrailheadEntityEventTriggerHandler" class="nav-item class " onclick="goToLocation('TrailheadEntityEventTriggerHandler.html');">
+              <li title="TrailheadEntityEventTriggerHandler" id="item-TrailheadEntityEventTriggerHandler" class="nav-item class public" onclick="goToLocation('TrailheadEntityEventTriggerHandler.html');">
                 <a tabindex="1" href="javascript:void(0)">TrailheadEntityEventTriggerHandler</a>
               </li>
             </ul>
@@ -75,10 +75,10 @@
             </summary>
             <ul>
               <!-- menu items -->
-              <li title="DMLUtils" id="item-DMLUtils" class="nav-item class " onclick="goToLocation('DMLUtils.html');">
+              <li title="DMLUtils" id="item-DMLUtils" class="nav-item class public" onclick="goToLocation('DMLUtils.html');">
                 <a tabindex="1" href="javascript:void(0)">DMLUtils</a>
               </li>
-              <li title="CustomHttpCalloutMock" id="item-CustomHttpCalloutMock" class="nav-item class " onclick="goToLocation('CustomHttpCalloutMock.html');">
+              <li title="CustomHttpCalloutMock" id="item-CustomHttpCalloutMock" class="nav-item class public" onclick="goToLocation('CustomHttpCalloutMock.html');">
                 <a tabindex="1" href="javascript:void(0)">CustomHttpCalloutMock</a>
               </li>
             </ul>
@@ -161,6 +161,24 @@
                       Logs errors from insert and update calls by processing provided saveResults and using Nebula Logger.
                     </div>
                   </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#DMLUtils.logErrors_2">
+                      logErrors (deleteResults, callingClassName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Logs errors from delete calls by processing provided deleteResults and using Nebula Logger.
+                    </div>
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#DMLUtils.logErrors_3">
+                      logErrors (emptyRecycleBinResults, callingClassName)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Logs errors from hard delete calls by processing provided emptyRecycleBinResults and using Nebula Logger.
+                    </div>
+                  </li>
                 </ul>
                 <div class="method public">
                   <h4 class="method-title " id="DMLUtils.logErrors">
@@ -224,6 +242,66 @@
                   </div>
                   <div class="method-subtitle-description">
                     <code class="code-inline">Boolean</code> True if any records failed the DML operation.
+                  </div>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="DMLUtils.logErrors_2">
+                    <span>logErrors(deleteResults, callingClassName)</span>
+                  </h4>
+                  <div class="method-description">
+                    Logs errors from delete calls by processing provided deleteResults and using Nebula Logger.
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public static Boolean logErrors(List&lt;Database.DeleteResult&gt; deleteResults, String callingClassName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">deleteResults</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">List&lt;Database.DeleteResult&gt;</code>
+                  </div>
+                  <div class="param-name">callingClassName</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">String</code>
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    <code class="code-inline">Boolean</code>
+                  </div>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="DMLUtils.logErrors_3">
+                    <span>logErrors(emptyRecycleBinResults, callingClassName)</span>
+                  </h4>
+                  <div class="method-description">
+                    Logs errors from hard delete calls by processing provided emptyRecycleBinResults and using Nebula Logger.
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public static Boolean logErrors(List&lt;Database.EmptyRecycleBinResult&gt; emptyRecycleBinResults, String callingClassName)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">emptyRecycleBinResults</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">List&lt;Database.EmptyRecycleBinResult&gt;</code>
+                  </div>
+                  <div class="param-name">callingClassName</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">String</code>
+                  </div>
+                  <div class="method-subtitle">
+                    Returns
+                  </div>
+                  <div class="method-subtitle-description">
+                    <code class="code-inline">Boolean</code>
                   </div>
                 </div>
               </div>

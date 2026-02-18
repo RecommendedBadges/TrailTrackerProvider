@@ -23,7 +23,7 @@
       ],
       "package": "Core",
       "versionName": "Brooklyn",
-      "versionNumber": "1.9.0.NEXT",
+      "versionNumber": "1.10.0.NEXT",
       "versionDescription": "Core package for Trail Tracker Provider app. Contains objects, triggers, and other base functionality."
     },
     {
@@ -57,6 +57,7 @@
     "Core@1.6.0-1": "04t8b000000jtxWAAQ",
     "Core@1.7.0-1": "04t8b000000ju2XAAQ",
     "Core@1.8.0-1": "04t8b000000ju2cAAA",
-    "Core@1.9.0-1": "04t8b000000ju4JAAQ"
+    "Core@1.9.0-1": "04t8b000000ju4JAAQ",
+    "Core@1.10.0-1": "04tHr000001C6jMIAS"
   }
 }

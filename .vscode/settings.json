@@ -19,5 +19,6 @@
     "**/Thumbs.db": true,
     ".mule": true
   },
-  "codeAnalyzer.pMD.customConfigFile": ".pmdrules.xml"
+  "codeAnalyzer.pMD.customConfigFile": ".pmdrules.xml",
+  "xml.preferences.showSchemaDocumentationType": "none"
 }

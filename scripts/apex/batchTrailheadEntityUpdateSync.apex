@@ -1,0 +1,1 @@
+Database.executeBatch(new BatchTrailheadEntityUpdateSync(), 200);

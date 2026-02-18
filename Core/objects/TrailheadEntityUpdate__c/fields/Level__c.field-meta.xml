@@ -12,6 +12,11 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>Foundational</fullName>
+                <default>false</default>
+                <label>Foundational</label>
+            </value>
+            <value>
                 <fullName>Beginner</fullName>
                 <default>false</default>
                 <label>Beginner</label>

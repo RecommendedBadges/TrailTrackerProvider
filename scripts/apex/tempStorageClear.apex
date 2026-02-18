@@ -6,9 +6,11 @@ Database.emptyRecycleBin(archivedBadges);
 Database.emptyRecycleBin(archivedTrails);
 
 List<trailheadapp__Trailmix__c> trailmixes = [SELECT Id FROM trailheadapp__Trailmix__c];
-delete trailmixes;
-Database.emptyRecycleBin(trailmixes);
+if(trailmixes.size() > 0) {
+    Database.emptyRecycleBin(trailmixes);
+    delete trailmixes;
+}
 
-/*List<trailheadapp__Debug_Log__c> debugLogs = [SELECT Id FROM trailheadapp__Debug_Log__c];
+List<trailheadapp__Debug_Log__c> debugLogs = [SELECT Id FROM trailheadapp__Debug_Log__c];
 delete debugLogs;
-Database.emptyRecycleBin(debugLogs);*/
+Database.emptyRecycleBin(debugLogs);
